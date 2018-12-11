@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/rs_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="4dp"
+            android:src="@mipmap/icon_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="8dp"
+            android:text="忘记密码"
+            android:textSize="18dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rs_back2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="4dp"
+            android:src="@mipmap/icon_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="重置密码"
+            android:textSize="18dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/reset_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="4dp"
+            android:src="@mipmap/icon_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="重置密码"
+            android:textSize="18dp"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/rs_login_phone"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/edit_underline_selector"
+        android:hint="请输入手机号"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:textColorHint="@color/color_999999"
+        android:textCursorDrawable="@drawable/edit_cursor_color"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/rs_login_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/edit_underline_selector"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:textColorHint="@color/color_999999"
+        android:textCursorDrawable="@drawable/edit_cursor_color"
+        android:textSize="15sp"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/edit_underline_selector"
+        android:hint="请确认密码"
+        android:inputType="textPassword"
+        android:textColorHint="@color/color_999999"
+        android:textCursorDrawable="@drawable/edit_cursor_color"
+        android:textSize="16sp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/rs_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/rs_check_code"
+            android:layout_height="40dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:background="@drawable/edit_underline_selector"
+            android:hint="请输入验证码"
+            android:textColorHint="@color/color_999999"
+            android:textCursorDrawable="@drawable/edit_cursor_color"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/rs_get_code"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="5dp"
+            android:gravity="center_horizontal"
+            android:padding="6dp"
+            android:background="@drawable/button_sure_bg_half_circle"
+            android:text="获取验证码"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_14"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/rs_next"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/button_sure_bg_half_circle"
+        android:text="下一步"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_16" />
+
+    <Button
+        android:id="@+id/rs_done"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/button_sure_bg_half_circle"
+        android:text="完成"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_16"
+        android:visibility="gone"/>
+
+</LinearLayout>
+

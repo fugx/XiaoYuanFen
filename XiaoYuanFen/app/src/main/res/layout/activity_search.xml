@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_search"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/white"
+        android:focusable="false"
+        android:padding="3dp">
+
+            <ImageView
+                android:id="@+id/ig_search_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:src="@mipmap/icon_back" />
+
+            <EditText
+                android:id="@+id/et_search_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/ig_search_back"
+                android:layout_marginLeft="5dp"
+                android:background="@null"
+                android:hint="请输入关键字"
+                android:maxLength="20"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/color_666666"
+                android:textColorHint="@color/color_afafaf"
+                android:textSize="@dimen/font_16" />
+
+            <ImageView
+                android:id="@+id/ig_search_clean"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/ig_search_image"
+                android:layout_centerVertical="true"
+                android:padding="4dp"
+                android:layout_margin="5dp"
+                android:src="@mipmap/icon_close1" />
+
+            <ImageView
+                android:id="@+id/ig_search_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="3dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="15dp"
+                android:src="@mipmap/icon_search" />
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_search_history"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:background="@color/white"
+        android:layout_below="@+id/rl_search"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/rl_history_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical"
+            android:text="搜索历史"
+            android:textSize="@dimen/font_16" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_search_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_below="@+id/rl_history_title"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ll_search_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_search"
+        android:visibility="gone">
+
+        <RadioGroup
+            android:id="@+id/rg_order"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:checkedButton="@+id/rb_1"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:layout_gravity="center">
+
+            <RadioButton
+                android:id="@+id/rb_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:button="@null"
+                android:drawableBottom="@drawable/selector_message_tab"
+                android:text="基础课程"
+                android:textColor="@color/selector_search_text_color"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/rb_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:button="@null"
+                android:drawableBottom="@drawable/selector_message_tab"
+                android:text="拓展课程"
+                android:textColor="@color/selector_search_text_color"
+                android:textSize="18sp"/>
+
+            <RadioButton
+                android:id="@+id/rb_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:drawableBottom="@drawable/selector_message_tab"
+                android:text="教师"
+                android:textColor="@color/selector_search_text_color"
+                android:textSize="18sp"/>
+        </RadioGroup>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_search_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rg_order"
+            android:background="@color/color_main_grey_white" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
