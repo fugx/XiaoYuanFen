@@ -54,14 +54,14 @@ public class AppContext extends CrashReportingApplication {
         //PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), MyIntentService.class);
 
         // 友盟初始化，未申请到各平台key时请注释友盟初始化方法
-        Config.DEBUG = true;
+//        Config.DEBUG = true;
 //        Config.REDIRECT_URL = "http://sns.whalecloud.com/sin2/callback";
-        UMShareAPI.get(this);
-        Config.isJumptoAppStore = true;
+//        UMShareAPI.get(this);
+//        Config.isJumptoAppStore = true;
 
         //友盟统计
-        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
-        MobclickAgent.openActivityDurationTrack(false);
+//        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
+//        MobclickAgent.openActivityDurationTrack(false);
         //OSS初始化
         OssManager.initOSS();
 
@@ -103,9 +103,9 @@ public class AppContext extends CrashReportingApplication {
         return mContext;
     }
     {
-        PlatformConfig.setWeixin("wxa1228c22e6221821", "dc4ebc2c7ba13187234b1467b203361b");
-        PlatformConfig.setSinaWeibo("4129882210", "dc4ebc2c7ba13187234b1467b203361b", "http://www.quwudao.com/");
-        PlatformConfig.setQQZone("1106202035", "KEYfj1U8GtbNZMjf47p");
+//        PlatformConfig.setWeixin("wxa1228c22e6221821", "dc4ebc2c7ba13187234b1467b203361b");
+//        PlatformConfig.setSinaWeibo("4129882210", "dc4ebc2c7ba13187234b1467b203361b", "http://www.quwudao.com/");
+//        PlatformConfig.setQQZone("1106202035", "KEYfj1U8GtbNZMjf47p");
     }
 
     /**
