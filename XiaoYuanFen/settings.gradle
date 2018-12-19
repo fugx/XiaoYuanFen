@@ -1,1 +1,1 @@
-include ':app', ':commonlibrary', ':umengshare', ':versionmanagerlibrary'
+include ':app', ':commonlibrary', ':umengshare', ':versionmanagerlibrary', ':pickerview', ':wheelview'

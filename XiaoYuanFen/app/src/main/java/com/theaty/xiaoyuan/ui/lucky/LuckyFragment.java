@@ -13,8 +13,8 @@ import android.view.View;
 import com.theaty.xiaoyuan.R;
 import com.theaty.xiaoyuan.system.DatasStore;
 import com.theaty.xiaoyuan.ui.MainActivity;
-import com.theaty.xiaoyuan.ui.lucky.acftivity.CreateGoodsActivity;
-import com.theaty.xiaoyuan.ui.lucky.acftivity.SearchActivity;
+import com.theaty.xiaoyuan.ui.lucky.activity.CreateGoodsActivity;
+import com.theaty.xiaoyuan.ui.lucky.activity.SearchActivity;
 import com.theaty.xiaoyuan.ui.login.LoginActivity;
 
 import butterknife.OnClick;

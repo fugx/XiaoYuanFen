@@ -1,4 +1,4 @@
-package com.theaty.xiaoyuan.ui.lucky.acftivity;
+package com.theaty.xiaoyuan.ui.lucky.activity;
 
 import android.content.Context;
 import android.content.Intent;

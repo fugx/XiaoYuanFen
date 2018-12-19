@@ -58,7 +58,13 @@
         <item name="android:layout_marginRight">14dp</item>
     </style>
 
-    <style name="horizontal_line">
+    <style name="horizontal_line05">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dip</item>
+        <item name="android:background">#e2e2e2</item>
+    </style>
+
+    <style name="horizontal_line1">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.5dip</item>
         <item name="android:background">#e2e2e2</item>

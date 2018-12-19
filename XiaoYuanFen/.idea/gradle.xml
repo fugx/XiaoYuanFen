@@ -10,8 +10,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/commonlibrary" />
+            <option value="$PROJECT_DIR$/pickerview" />
             <option value="$PROJECT_DIR$/umengshare" />
             <option value="$PROJECT_DIR$/versionmanagerlibrary" />
+            <option value="$PROJECT_DIR$/wheelview" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

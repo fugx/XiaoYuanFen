@@ -141,6 +141,8 @@
         <activity android:name=".ui.login.ForgetPassActivity"/>
         <activity android:name=".ui.login.AgreementActivity"/>
         <activity android:name=".ui.login.LoginActivity"/>
+        <activity android:name=".ui.lucky.activity.SearchActivity"/>
+        <activity android:name=".ui.lucky.activity.CreateGoodsActivity"/>
     </application>
 
 </manifest>
