@@ -8,12 +8,16 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import com.theaty.xiaoyuan.R;
-import com.theaty.xiaoyuan.ui.MainActivity;
 
+import com.theaty.xiaoyuan.R;
+import com.theaty.xiaoyuan.system.DatasStore;
+import com.theaty.xiaoyuan.ui.MainActivity;
+import com.theaty.xiaoyuan.ui.lucky.acftivity.CreateGoodsActivity;
+import com.theaty.xiaoyuan.ui.lucky.acftivity.SearchActivity;
+import com.theaty.xiaoyuan.ui.login.LoginActivity;
+
+import butterknife.OnClick;
 import foundation.base.fragment.BaseFragment;
 /**
  * 课程页面
@@ -43,7 +47,7 @@ public class LuckyFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initView();
-        getData("1");
+        getData();
     }
 
     @Override
@@ -52,20 +56,12 @@ public class LuckyFragment extends BaseFragment {
 
     }
 
-    public void getData(String type) {
+    public void getData() {
 
     }
 
     private void initView() {
 
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-
-        return rootView;
     }
 
     @Override
@@ -83,6 +79,30 @@ public class LuckyFragment extends BaseFragment {
         super.onDestroyView();
     }
 
+    @OnClick({R.id.iv_creat_icon,R.id.tv_creat,R.id.ig_search_word})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_creat_icon:
+                if (DatasStore.isLogin()) {
+                    CreateGoodsActivity.into(getContext());
+                } else {
+                    LoginActivity.into(getContext());
+                }
+                break;
+
+            case R.id.tv_creat:
+                if (DatasStore.isLogin()) {
+                    CreateGoodsActivity.into(getContext());
+                } else {
+                    LoginActivity.into(getContext());
+                }
+                break;
+
+            case R.id.ig_search_word:
+                SearchActivity.into(getContext());
+                break;
+        }
+    }
 
     private ChangeListener changeListener;
 

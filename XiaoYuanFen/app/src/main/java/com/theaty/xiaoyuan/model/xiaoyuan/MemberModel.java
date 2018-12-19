@@ -16,6 +16,9 @@ import com.theaty.xiaoyuan.model.adapter.ThtGosn;
 import com.theaty.xiaoyuan.oss.Ossutil;
 import com.theaty.xiaoyuan.system.DatasStore;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -24,30 +27,38 @@ import java.util.Calendar;
 import java.util.List;
 
 import foundation.log.LogUtils;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * @author Theaty
+ * 用户/会员
  * @desc
  */
+@Entity
 public class MemberModel extends BaseModel {
     /**
-     * 会员id' ,
+     * 用户id' ,
      */
+    @Id
     public int member_id;
     /**
-     * 会员名称' ,
+     * 用户名称' ,
      */
     public String member_name;
+    /**
+     * 是否是会员' ,
+     */
+    public String is_vip;
     /**
      * 真实姓名' ,
      */
     public String member_truename;
     /**
-     * 会员头像' ,
+     * 用户头像' ,
      */
     public String member_avatar;
     /**
-     * 会员性别' ,
+     * 用户性别' ,
      */
     public int member_sex;
     /**
@@ -55,7 +66,7 @@ public class MemberModel extends BaseModel {
      */
     public String member_birthday;
     /**
-     * 会员密码' ,
+     * 用户密码' ,
      */
     public String member_passwd;
     /**
@@ -63,7 +74,7 @@ public class MemberModel extends BaseModel {
      */
     public String member_paypwd;
     /**
-     * 会员邮箱' ,
+     * 用户邮箱' ,
      */
     public String member_email;
     /**
@@ -91,7 +102,7 @@ public class MemberModel extends BaseModel {
      */
     public int member_login_num;
     /**
-     * 会员注册时间' ,
+     * 用户注册时间' ,
      */
     public String member_time;
     /**
@@ -131,7 +142,7 @@ public class MemberModel extends BaseModel {
      */
     public String member_wx_openid;
     /**
-     * 会员积分' ,
+     * 用户积分' ,
      */
     public int member_points;
     /**
@@ -155,15 +166,15 @@ public class MemberModel extends BaseModel {
      */
     public int inform_allow;
     /**
-     * 会员是否有购买权限 1为开启 0为关闭' ,
+     * 用户是否有购买权限 1为开启 0为关闭' ,
      */
     public int is_buy;
     /**
-     * 会员是否有咨询和发送站内信的权限 1为开启 0为关闭' ,
+     * 用户是否有咨询和发送站内信的权限 1为开启 0为关闭' ,
      */
     public int is_allowtalk;
     /**
-     * 会员的开启状态 1为开启 0为关闭' ,
+     * 用户的开启状态 1为开启 0为关闭' ,
      */
     public int member_state;
     /**
@@ -191,11 +202,11 @@ public class MemberModel extends BaseModel {
      */
     public String member_privacy;
     /**
-     * 会员常用操作' ,
+     * 用户常用操作' ,
      */
     public String member_quicklink;
     /**
-     * 会员经验值' ,
+     * 用户经验值' ,
      */
     public int member_exppoints;
     /**
@@ -207,27 +218,27 @@ public class MemberModel extends BaseModel {
      */
     public String hx_userpwd;
     /**
-     * 会员昵称' ,
+     * 用户昵称' ,
      */
     public String member_nick;
     /**
-     * 会员个推cid' ,
+     * 用户个推cid' ,
      */
     public String member_cid_1;
     /**
-     * 会员个推cid' ,
+     * 用户个推cid' ,
      */
     public String member_cid_2;
     /**
-     * 会员个推cid' ,
+     * 用户个推cid' ,
      */
     public String member_cid_3;
     /**
-     * 会员个推cid' ,
+     * 用户个推cid' ,
      */
     public String member_cid_4;
     /**
-     * 会员个推cid' ,
+     * 用户个推cid' ,
      */
     public String member_cid_5;
     /**
@@ -255,10 +266,6 @@ public class MemberModel extends BaseModel {
      */
     public String client_type_5;
     /**
-     * 会员充值' ,
-     */
-    public int member_isvip;
-    /**
      * 开始时间' ,
      */
     public int member_begin;
@@ -266,26 +273,7 @@ public class MemberModel extends BaseModel {
      * 结束时间' ,
      */
     public int member_end;
-    /**
-     * 教师' ,
-     */
-    public int member_teacher;
-    /**
-     * 教师头像' ,
-     */
-    public String member_teacher_avatar;
-    /**
-     * 教师姓名' ,
-     */
-    public String member_teacher_name;
-    /**
-     * 教师简介' ,
-     */
-    public String member_teacher_description;
-    /**
-     * 教师简介url' ,
-     */
-    public String member_teacher_url;
+
     /**
      * 身份证正面' ,
      */
@@ -294,26 +282,7 @@ public class MemberModel extends BaseModel {
      * 身份证反面' ,
      */
     public String teacher_cartreverse;
-    /**
-     * 教师资格证' ,
-     */
-    public String teacher_certificate;
-    /**
-     * 预约价格' ,
-     */
-    public Double teacher_timep;
-    /**
-     * 首页推荐' ,
-     */
-    public int member_teacher_commend;
-    /**
-     * 教师分' ,
-     */
-    public Double teacher_star;
-    /**
-     * 教师分类id' ,
-     */
-    public int gc_id;
+
     /**
      * 粉丝数量' ,
      */
@@ -349,40 +318,26 @@ public class MemberModel extends BaseModel {
 //    public List<EvaluateStoreModel> getEvaluationModel() {
 //        return evaluation;
 //    }
-//
-//    /**
-//     * 教师排课日期,
-//     */
-//    private List<ClassModel> class_list = new ArrayList<ClassModel>();
-//
-//    public List<ClassModel> getClassList() {
-//        return class_list;
-//    }
-
-    /**
-     * 融云token
-     */
-    public String rongyun_token;
-
 
     //初始化默认值
     public MemberModel() {
-        member_id = 0;//会员id' ,
-        member_name = "";//会员名称' ,
+        member_id = 0;//用户id' ,
+        member_name = "";//用户名称' ,
+        is_vip = "";//用户名称' ,
         member_truename = "";//真实姓名' ,
-        member_avatar = "";//会员头像' ,
-        member_sex = 0;//会员性别' ,
+        member_avatar = "";//用户头像' ,
+        member_sex = 0;//用户性别' ,
         member_birthday = "";//生日' ,
-        member_passwd = "";//会员密码' ,
+        member_passwd = "";//用户密码' ,
         member_paypwd = "";//支付密码' ,
-        member_email = "";//会员邮箱' ,
+        member_email = "";//用户邮箱' ,
         member_email_bind = 0;//0未绑定1已绑定' ,
         member_mobile = "";//手机号' ,
         member_mobile_bind = 0;//0未绑定1已绑定' ,
         member_qq = "";//qq' ,
         member_ww = "";//阿里旺旺' ,
         member_login_num = 0;//登录次数' ,
-        member_time = "";//会员注册时间' ,
+        member_time = "";//用户注册时间' ,
         member_login_time = "";//当前登录时间' ,
         member_old_login_time = "";//上次登录时间' ,
         member_login_ip = "";//当前登录ip' ,
@@ -392,131 +347,117 @@ public class MemberModel extends BaseModel {
         member_sinaopenid = "";//新浪微博登录id' ,
         member_sinainfo = "";//新浪账号相关信息序列化值' ,
         member_wx_openid = "";//微信帐号id' ,
-        member_points = 0;//会员积分' ,
+        member_points = 0;//用户积分' ,
         available_predeposit = 0.0;//预存款可用金额' ,
         freeze_predeposit = 0.0;//预存款冻结金额' ,
         available_rc_balance = 0.0;//可用充值卡余额' ,
         freeze_rc_balance = 0.0;//冻结充值卡余额' ,
         inform_allow = 0;//是否允许举报(1可以/2不可以)' ,
-        is_buy = 0;//会员是否有购买权限 1为开启 0为关闭' ,
-        is_allowtalk = 0;//会员是否有咨询和发送站内信的权限 1为开启 0为关闭' ,
-        member_state = 0;//会员的开启状态 1为开启 0为关闭' ,
+        is_buy = 0;//用户是否有购买权限 1为开启 0为关闭' ,
+        is_allowtalk = 0;//用户是否有咨询和发送站内信的权限 1为开启 0为关闭' ,
+        member_state = 0;//用户的开启状态 1为开启 0为关闭' ,
         member_snsvisitnum = 0;//sns空间访问次数' ,
         member_areaid = 0;//地区id' ,
         member_cityid = 0;//城市id' ,
         member_provinceid = 0;//省份id' ,
         member_areainfo = "";//地区内容' ,
         member_privacy = "";//隐私设定' ,
-        member_quicklink = "";//会员常用操作' ,
-        member_exppoints = 0;//会员经验值' ,
+        member_quicklink = "";//用户常用操作' ,
+        member_exppoints = 0;//用户经验值' ,
         hx_username = "";//环信用户名' ,
         hx_userpwd = "";//环信密码' ,
-        member_nick = "";//会员昵称' ,
-        member_cid_1 = "";//会员个推cid' ,
-        member_cid_2 = "";//会员个推cid' ,
-        member_cid_3 = "";//会员个推cid' ,
-        member_cid_4 = "";//会员个推cid' ,
-        member_cid_5 = "";//会员个推cid' ,
+        member_nick = "";//用户昵称' ,
+        member_cid_1 = "";//用户个推cid' ,
+        member_cid_2 = "";//用户个推cid' ,
+        member_cid_3 = "";//用户个推cid' ,
+        member_cid_4 = "";//用户个推cid' ,
+        member_cid_5 = "";//用户个推cid' ,
         client_type_1 = "";//客户端类型 android ios（和member_cid_1对应）' ,
         client_type_2 = "";//客户端类型 android ios（和member_cid_1对应）' ,
         client_type_3 = "";//客户端类型 android ios（和member_cid_1对应）' ,
         client_type_4 = "";//客户端类型 android ios（和member_cid_1对应）' ,
         client_type_5 = "";//客户端类型 android ios（和member_cid_1对应）' ,
-        member_isvip = 0;//会员充值' ,
         member_begin = 0;//开始时间' ,
         member_end = 0;//结束时间' ,
-        member_teacher = 0;//教师' ,
-        member_teacher_avatar = "";//教师头像' ,
-        member_teacher_name = "";//教师姓名' ,
-        member_teacher_description = "";//教师简介' ,
-        member_teacher_url = "";//教师简介url' ,
         teacher_cardface = "";//身份证正面' ,
         teacher_cartreverse = "";//身份证反面' ,
-        teacher_certificate = "";//教师资格证' ,
-        teacher_timep = 0.0;//预约价格' ,
-        member_teacher_commend = 0;//首页推荐' ,
-        teacher_star = 0.0;//教师分' ,
-        gc_id = 0;//教师分类id' ,
         friend_count = 0; //粉丝数量,
-        rongyun_token = "";//融云token
     }
 
-    /**
-     * 首页广告,
-     */
-    private List<AdvModel> advs = new ArrayList<AdvModel>();
-
-    public List<AdvModel> getAdvModel() {
-        return advs;
-    }
-
-    //动画课程
-    private ChildrenBean cartoon;
-
-    //视频课程
-    private ChildrenBean video;
-
-    //人气教师
-    private ChildrenBean teacher;
-
-//    private List<TaskModel> task_list = new ArrayList<TaskModel>();
-//
-//    public List<TaskModel> getTaskModel() {
-//        return task_list;
-//    }
-
-    public ChildrenBean getCartoon() {
-        return cartoon;
-    }
-
-    public ChildrenBean getVideo() {
-        return video;
-    }
-
-    public ChildrenBean getTeacher() {
-        return teacher;
-    }
-
-    public static class ChildrenBean {
-
-        //动画课程名称
-        private String cartoon_name;
-
-        //视频课程名称
-        private String video_name;
-
-//        private List<GoodsModel> goods_list = new ArrayList<GoodsModel>();
-
-        public String getCartoonName() {
-            return cartoon_name;
-        }
-
-        public String getVideoName() {
-            return video_name;
-        }
-
-//        public List<GoodsModel> getGoodsList() {
-//            return goods_list;
-//        }
-
-        //人气教师名称
-        private String teacher_name;
-
-        public String getTeacherName() {
-            return teacher_name;
-        }
-
-        private List<MemberModel> teacher_list = new ArrayList<MemberModel>();
-
-        public List<MemberModel> getTeacherList() {
-            return teacher_list;
-        }
-
-        public ChildrenBean() {
-            cartoon_name = "";
-            video_name = "";
-            teacher_name = "";
-        }
+    @Generated(hash = 1083322875)
+    public MemberModel(int member_id, String member_name, String is_vip, String member_truename, String member_avatar, int member_sex, String member_birthday,
+            String member_passwd, String member_paypwd, String member_email, int member_email_bind, String member_mobile, int member_mobile_bind, String member_qq,
+            String member_ww, int member_login_num, String member_time, String member_login_time, String member_old_login_time, String member_login_ip,
+            String member_old_login_ip, String member_qqopenid, String member_qqinfo, String member_sinaopenid, String member_sinainfo, String member_wx_openid,
+            int member_points, Double available_predeposit, Double freeze_predeposit, Double available_rc_balance, Double freeze_rc_balance, int inform_allow,
+            int is_buy, int is_allowtalk, int member_state, int member_snsvisitnum, int member_areaid, int member_cityid, int member_provinceid,
+            String member_areainfo, String member_privacy, String member_quicklink, int member_exppoints, String hx_username, String hx_userpwd, String member_nick,
+            String member_cid_1, String member_cid_2, String member_cid_3, String member_cid_4, String member_cid_5, String key, String client_type_1,
+            String client_type_2, String client_type_3, String client_type_4, String client_type_5, int member_begin, int member_end, String teacher_cardface,
+            String teacher_cartreverse, int friend_count, int is_friend) {
+        this.member_id = member_id;
+        this.member_name = member_name;
+        this.is_vip = is_vip;
+        this.member_truename = member_truename;
+        this.member_avatar = member_avatar;
+        this.member_sex = member_sex;
+        this.member_birthday = member_birthday;
+        this.member_passwd = member_passwd;
+        this.member_paypwd = member_paypwd;
+        this.member_email = member_email;
+        this.member_email_bind = member_email_bind;
+        this.member_mobile = member_mobile;
+        this.member_mobile_bind = member_mobile_bind;
+        this.member_qq = member_qq;
+        this.member_ww = member_ww;
+        this.member_login_num = member_login_num;
+        this.member_time = member_time;
+        this.member_login_time = member_login_time;
+        this.member_old_login_time = member_old_login_time;
+        this.member_login_ip = member_login_ip;
+        this.member_old_login_ip = member_old_login_ip;
+        this.member_qqopenid = member_qqopenid;
+        this.member_qqinfo = member_qqinfo;
+        this.member_sinaopenid = member_sinaopenid;
+        this.member_sinainfo = member_sinainfo;
+        this.member_wx_openid = member_wx_openid;
+        this.member_points = member_points;
+        this.available_predeposit = available_predeposit;
+        this.freeze_predeposit = freeze_predeposit;
+        this.available_rc_balance = available_rc_balance;
+        this.freeze_rc_balance = freeze_rc_balance;
+        this.inform_allow = inform_allow;
+        this.is_buy = is_buy;
+        this.is_allowtalk = is_allowtalk;
+        this.member_state = member_state;
+        this.member_snsvisitnum = member_snsvisitnum;
+        this.member_areaid = member_areaid;
+        this.member_cityid = member_cityid;
+        this.member_provinceid = member_provinceid;
+        this.member_areainfo = member_areainfo;
+        this.member_privacy = member_privacy;
+        this.member_quicklink = member_quicklink;
+        this.member_exppoints = member_exppoints;
+        this.hx_username = hx_username;
+        this.hx_userpwd = hx_userpwd;
+        this.member_nick = member_nick;
+        this.member_cid_1 = member_cid_1;
+        this.member_cid_2 = member_cid_2;
+        this.member_cid_3 = member_cid_3;
+        this.member_cid_4 = member_cid_4;
+        this.member_cid_5 = member_cid_5;
+        this.key = key;
+        this.client_type_1 = client_type_1;
+        this.client_type_2 = client_type_2;
+        this.client_type_3 = client_type_3;
+        this.client_type_4 = client_type_4;
+        this.client_type_5 = client_type_5;
+        this.member_begin = member_begin;
+        this.member_end = member_end;
+        this.teacher_cardface = teacher_cardface;
+        this.teacher_cartreverse = teacher_cartreverse;
+        this.friend_count = friend_count;
+        this.is_friend = is_friend;
     }
 
     /**
@@ -554,13 +495,13 @@ public class MemberModel extends BaseModel {
     }
 
     /**
-     * 会员登陆
+     * 用户登陆
      *
      * @param username 用户名（电话号码）
      * @param password 用户密码
-     *                  //@param type 会员1，教师2
+     *                  //@param type 用户1，教师2
      *                 //@param client           类型 客户端类型（'android'，'wechat', 'ios'）
-     * @param type 类型1会员2老师
+     * @param type 类型1用户2老师
      * @param bib
      */
     public void Login(String username, String password,String type, final BaseModelIB bib) {
@@ -622,7 +563,7 @@ public class MemberModel extends BaseModel {
      *
      * @param username
      * @param identify_code
-     * @param type 类型1会员2老师
+     * @param type 类型1用户2老师
      * @param bib
      */
     public void index_phone(String username, String identify_code,String type, final BaseModelIB bib) {
@@ -659,7 +600,7 @@ public class MemberModel extends BaseModel {
     }
 
     /**
-     * 修改会员个推cid
+     * 修改用户个推cid
      *
      * @param key        key
      * @param member_cid 个推CID
@@ -699,7 +640,7 @@ public class MemberModel extends BaseModel {
     }
 
     /**
-     * 会员详细信息
+     * 用户详细信息
      *
      * @param key key值
      * @param bib
@@ -803,7 +744,7 @@ public class MemberModel extends BaseModel {
     }
 
     /**
-     * 会员注册
+     * 用户注册
      *
      * @param username 用户名（电话号码）
      * @param password 用户密码
@@ -1245,7 +1186,7 @@ public class MemberModel extends BaseModel {
     /**
      * 签到页
      *
-     * @param member_id     会员ID
+     * @param member_id     用户ID
      * @param bib
      */
 //    public void member_task(String member_id,  final BaseModelIB bib) {
@@ -1492,7 +1433,7 @@ public class MemberModel extends BaseModel {
     /**
      * 意见反馈
      *
-     * @param member_id 会员ID
+     * @param member_id 用户ID
      * @param content 反馈
      * @param bib
      */
@@ -1562,7 +1503,7 @@ public class MemberModel extends BaseModel {
      * 课程列表
      *
      * @param gc_id     分类ID
-     * @param member_id     会员ID
+     * @param member_id     用户ID
      * @param key_words     关键字
      * @param goods_type     类型1动画2视频
      * @param a_id     标签ID英文逗号
@@ -1794,7 +1735,7 @@ public class MemberModel extends BaseModel {
      * 教师详情
      *
      * @param teacher_id     教师ID
-     * @param member_id     会员ID
+     * @param member_id     用户ID
      * @param bib
      */
     public void teacher_detail(String teacher_id, String member_id, final BaseModelIB bib) {
@@ -2262,5 +2203,509 @@ public class MemberModel extends BaseModel {
                 BIBFailed(bib, new ResultsModel(-999, "网络超时")); // 访问接口失败, 可能网络原因, 或者服务器宕机等造成
             }
         });
+    }
+
+    public int getMember_id() {
+        return this.member_id;
+    }
+
+    public void setMember_id(int member_id) {
+        this.member_id = member_id;
+    }
+
+    public String getMember_name() {
+        return this.member_name;
+    }
+
+    public void setMember_name(String member_name) {
+        this.member_name = member_name;
+    }
+
+    public String getIs_vip() {
+        return this.is_vip;
+    }
+
+    public void setIs_vip(String is_vip) {
+        this.is_vip = is_vip;
+    }
+
+    public String getMember_truename() {
+        return this.member_truename;
+    }
+
+    public void setMember_truename(String member_truename) {
+        this.member_truename = member_truename;
+    }
+
+    public String getMember_avatar() {
+        return this.member_avatar;
+    }
+
+    public void setMember_avatar(String member_avatar) {
+        this.member_avatar = member_avatar;
+    }
+
+    public int getMember_sex() {
+        return this.member_sex;
+    }
+
+    public void setMember_sex(int member_sex) {
+        this.member_sex = member_sex;
+    }
+
+    public String getMember_birthday() {
+        return this.member_birthday;
+    }
+
+    public void setMember_birthday(String member_birthday) {
+        this.member_birthday = member_birthday;
+    }
+
+    public String getMember_passwd() {
+        return this.member_passwd;
+    }
+
+    public void setMember_passwd(String member_passwd) {
+        this.member_passwd = member_passwd;
+    }
+
+    public String getMember_paypwd() {
+        return this.member_paypwd;
+    }
+
+    public void setMember_paypwd(String member_paypwd) {
+        this.member_paypwd = member_paypwd;
+    }
+
+    public String getMember_email() {
+        return this.member_email;
+    }
+
+    public void setMember_email(String member_email) {
+        this.member_email = member_email;
+    }
+
+    public int getMember_email_bind() {
+        return this.member_email_bind;
+    }
+
+    public void setMember_email_bind(int member_email_bind) {
+        this.member_email_bind = member_email_bind;
+    }
+
+    public String getMember_mobile() {
+        return this.member_mobile;
+    }
+
+    public void setMember_mobile(String member_mobile) {
+        this.member_mobile = member_mobile;
+    }
+
+    public int getMember_mobile_bind() {
+        return this.member_mobile_bind;
+    }
+
+    public void setMember_mobile_bind(int member_mobile_bind) {
+        this.member_mobile_bind = member_mobile_bind;
+    }
+
+    public String getMember_qq() {
+        return this.member_qq;
+    }
+
+    public void setMember_qq(String member_qq) {
+        this.member_qq = member_qq;
+    }
+
+    public String getMember_ww() {
+        return this.member_ww;
+    }
+
+    public void setMember_ww(String member_ww) {
+        this.member_ww = member_ww;
+    }
+
+    public int getMember_login_num() {
+        return this.member_login_num;
+    }
+
+    public void setMember_login_num(int member_login_num) {
+        this.member_login_num = member_login_num;
+    }
+
+    public String getMember_time() {
+        return this.member_time;
+    }
+
+    public void setMember_time(String member_time) {
+        this.member_time = member_time;
+    }
+
+    public String getMember_login_time() {
+        return this.member_login_time;
+    }
+
+    public void setMember_login_time(String member_login_time) {
+        this.member_login_time = member_login_time;
+    }
+
+    public String getMember_old_login_time() {
+        return this.member_old_login_time;
+    }
+
+    public void setMember_old_login_time(String member_old_login_time) {
+        this.member_old_login_time = member_old_login_time;
+    }
+
+    public String getMember_login_ip() {
+        return this.member_login_ip;
+    }
+
+    public void setMember_login_ip(String member_login_ip) {
+        this.member_login_ip = member_login_ip;
+    }
+
+    public String getMember_old_login_ip() {
+        return this.member_old_login_ip;
+    }
+
+    public void setMember_old_login_ip(String member_old_login_ip) {
+        this.member_old_login_ip = member_old_login_ip;
+    }
+
+    public String getMember_qqopenid() {
+        return this.member_qqopenid;
+    }
+
+    public void setMember_qqopenid(String member_qqopenid) {
+        this.member_qqopenid = member_qqopenid;
+    }
+
+    public String getMember_qqinfo() {
+        return this.member_qqinfo;
+    }
+
+    public void setMember_qqinfo(String member_qqinfo) {
+        this.member_qqinfo = member_qqinfo;
+    }
+
+    public String getMember_sinaopenid() {
+        return this.member_sinaopenid;
+    }
+
+    public void setMember_sinaopenid(String member_sinaopenid) {
+        this.member_sinaopenid = member_sinaopenid;
+    }
+
+    public String getMember_sinainfo() {
+        return this.member_sinainfo;
+    }
+
+    public void setMember_sinainfo(String member_sinainfo) {
+        this.member_sinainfo = member_sinainfo;
+    }
+
+    public String getMember_wx_openid() {
+        return this.member_wx_openid;
+    }
+
+    public void setMember_wx_openid(String member_wx_openid) {
+        this.member_wx_openid = member_wx_openid;
+    }
+
+    public int getMember_points() {
+        return this.member_points;
+    }
+
+    public void setMember_points(int member_points) {
+        this.member_points = member_points;
+    }
+
+    public Double getAvailable_predeposit() {
+        return this.available_predeposit;
+    }
+
+    public void setAvailable_predeposit(Double available_predeposit) {
+        this.available_predeposit = available_predeposit;
+    }
+
+    public Double getFreeze_predeposit() {
+        return this.freeze_predeposit;
+    }
+
+    public void setFreeze_predeposit(Double freeze_predeposit) {
+        this.freeze_predeposit = freeze_predeposit;
+    }
+
+    public Double getAvailable_rc_balance() {
+        return this.available_rc_balance;
+    }
+
+    public void setAvailable_rc_balance(Double available_rc_balance) {
+        this.available_rc_balance = available_rc_balance;
+    }
+
+    public Double getFreeze_rc_balance() {
+        return this.freeze_rc_balance;
+    }
+
+    public void setFreeze_rc_balance(Double freeze_rc_balance) {
+        this.freeze_rc_balance = freeze_rc_balance;
+    }
+
+    public int getInform_allow() {
+        return this.inform_allow;
+    }
+
+    public void setInform_allow(int inform_allow) {
+        this.inform_allow = inform_allow;
+    }
+
+    public int getIs_buy() {
+        return this.is_buy;
+    }
+
+    public void setIs_buy(int is_buy) {
+        this.is_buy = is_buy;
+    }
+
+    public int getIs_allowtalk() {
+        return this.is_allowtalk;
+    }
+
+    public void setIs_allowtalk(int is_allowtalk) {
+        this.is_allowtalk = is_allowtalk;
+    }
+
+    public int getMember_state() {
+        return this.member_state;
+    }
+
+    public void setMember_state(int member_state) {
+        this.member_state = member_state;
+    }
+
+    public int getMember_snsvisitnum() {
+        return this.member_snsvisitnum;
+    }
+
+    public void setMember_snsvisitnum(int member_snsvisitnum) {
+        this.member_snsvisitnum = member_snsvisitnum;
+    }
+
+    public int getMember_areaid() {
+        return this.member_areaid;
+    }
+
+    public void setMember_areaid(int member_areaid) {
+        this.member_areaid = member_areaid;
+    }
+
+    public int getMember_cityid() {
+        return this.member_cityid;
+    }
+
+    public void setMember_cityid(int member_cityid) {
+        this.member_cityid = member_cityid;
+    }
+
+    public int getMember_provinceid() {
+        return this.member_provinceid;
+    }
+
+    public void setMember_provinceid(int member_provinceid) {
+        this.member_provinceid = member_provinceid;
+    }
+
+    public String getMember_areainfo() {
+        return this.member_areainfo;
+    }
+
+    public void setMember_areainfo(String member_areainfo) {
+        this.member_areainfo = member_areainfo;
+    }
+
+    public String getMember_privacy() {
+        return this.member_privacy;
+    }
+
+    public void setMember_privacy(String member_privacy) {
+        this.member_privacy = member_privacy;
+    }
+
+    public String getMember_quicklink() {
+        return this.member_quicklink;
+    }
+
+    public void setMember_quicklink(String member_quicklink) {
+        this.member_quicklink = member_quicklink;
+    }
+
+    public int getMember_exppoints() {
+        return this.member_exppoints;
+    }
+
+    public void setMember_exppoints(int member_exppoints) {
+        this.member_exppoints = member_exppoints;
+    }
+
+    public String getHx_username() {
+        return this.hx_username;
+    }
+
+    public void setHx_username(String hx_username) {
+        this.hx_username = hx_username;
+    }
+
+    public String getHx_userpwd() {
+        return this.hx_userpwd;
+    }
+
+    public void setHx_userpwd(String hx_userpwd) {
+        this.hx_userpwd = hx_userpwd;
+    }
+
+    public String getMember_nick() {
+        return this.member_nick;
+    }
+
+    public void setMember_nick(String member_nick) {
+        this.member_nick = member_nick;
+    }
+
+    public String getMember_cid_1() {
+        return this.member_cid_1;
+    }
+
+    public void setMember_cid_1(String member_cid_1) {
+        this.member_cid_1 = member_cid_1;
+    }
+
+    public String getMember_cid_2() {
+        return this.member_cid_2;
+    }
+
+    public void setMember_cid_2(String member_cid_2) {
+        this.member_cid_2 = member_cid_2;
+    }
+
+    public String getMember_cid_3() {
+        return this.member_cid_3;
+    }
+
+    public void setMember_cid_3(String member_cid_3) {
+        this.member_cid_3 = member_cid_3;
+    }
+
+    public String getMember_cid_4() {
+        return this.member_cid_4;
+    }
+
+    public void setMember_cid_4(String member_cid_4) {
+        this.member_cid_4 = member_cid_4;
+    }
+
+    public String getMember_cid_5() {
+        return this.member_cid_5;
+    }
+
+    public void setMember_cid_5(String member_cid_5) {
+        this.member_cid_5 = member_cid_5;
+    }
+
+    public String getKey() {
+        return this.key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getClient_type_1() {
+        return this.client_type_1;
+    }
+
+    public void setClient_type_1(String client_type_1) {
+        this.client_type_1 = client_type_1;
+    }
+
+    public String getClient_type_2() {
+        return this.client_type_2;
+    }
+
+    public void setClient_type_2(String client_type_2) {
+        this.client_type_2 = client_type_2;
+    }
+
+    public String getClient_type_3() {
+        return this.client_type_3;
+    }
+
+    public void setClient_type_3(String client_type_3) {
+        this.client_type_3 = client_type_3;
+    }
+
+    public String getClient_type_4() {
+        return this.client_type_4;
+    }
+
+    public void setClient_type_4(String client_type_4) {
+        this.client_type_4 = client_type_4;
+    }
+
+    public String getClient_type_5() {
+        return this.client_type_5;
+    }
+
+    public void setClient_type_5(String client_type_5) {
+        this.client_type_5 = client_type_5;
+    }
+
+    public int getMember_begin() {
+        return this.member_begin;
+    }
+
+    public void setMember_begin(int member_begin) {
+        this.member_begin = member_begin;
+    }
+
+    public int getMember_end() {
+        return this.member_end;
+    }
+
+    public void setMember_end(int member_end) {
+        this.member_end = member_end;
+    }
+
+    public String getTeacher_cardface() {
+        return this.teacher_cardface;
+    }
+
+    public void setTeacher_cardface(String teacher_cardface) {
+        this.teacher_cardface = teacher_cardface;
+    }
+
+    public String getTeacher_cartreverse() {
+        return this.teacher_cartreverse;
+    }
+
+    public void setTeacher_cartreverse(String teacher_cartreverse) {
+        this.teacher_cartreverse = teacher_cartreverse;
+    }
+
+    public int getFriend_count() {
+        return this.friend_count;
+    }
+
+    public void setFriend_count(int friend_count) {
+        this.friend_count = friend_count;
+    }
+
+    public int getIs_friend() {
+        return this.is_friend;
+    }
+
+    public void setIs_friend(int is_friend) {
+        this.is_friend = is_friend;
     }
 }

@@ -17,122 +17,30 @@
             android:layout_width="match_parent"
             android:layout_height="48dp">
 
-            <RadioGroup
-                android:id="@+id/rg_order"
+            <ImageView
+                android:id="@+id/iv_creat_icon"
+                android:layout_width="40dp"
+                android:layout_height="48dp"
+                android:layout_toLeftOf="@+id/tv_creat"
+                android:padding="11dp"
+                android:src="@drawable/add" />
+
+            <TextView
+                android:id="@+id/tv_creat"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:checkedButton="@+id/rb_1"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="1dp">
-
-                <RadioButton
-                    android:id="@+id/rb_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:button="@null"
-                    android:text="基础课程"
-                    android:textColor="@color/color_82a5d9"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <RadioButton
-                    android:id="@+id/rb_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:button="@null"
-                    android:text="拓展课程"
-                    android:textColor="@color/gray"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <RadioButton
-                    android:id="@+id/rb_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:button="@null"
-                    android:text="外教一对一"
-                    android:textColor="@color/gray"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </RadioGroup>
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="创造缘分"/>
 
             <ImageView
                 android:id="@+id/ig_search_word"
                 android:layout_width="40dp"
                 android:layout_height="48dp"
-                android:layout_toLeftOf="@+id/ig_search_icon"
+                android:layout_alignParentRight="true"
                 android:padding="11dp"
                 android:src="@mipmap/icon_search" />
 
-            <ImageView
-                android:id="@+id/ig_search_icon"
-                android:layout_width="40dp"
-                android:layout_height="48dp"
-                android:layout_alignParentRight="true"
-                android:padding="10dp"
-                android:src="@mipmap/icon_screen" />
         </RelativeLayout>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/view_pager_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rl_title"></android.support.v4.view.ViewPager>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rl_drawer"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="right"
-        android:background="@color/color_white_2"
-        android:clickable="true">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_sign_class"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="55dp"
-            android:clickable="true">
-        </android.support.v7.widget.RecyclerView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-
-            <TextView
-                android:id="@+id/tv_reset"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="@color/white"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="重置"
-                android:textSize="@dimen/font_18"/>
-
-            <TextView
-                android:id="@+id/tv_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:background="@color/color_main_green"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="确定"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_18"/>
-
-        </LinearLayout>
 
     </RelativeLayout>
 
