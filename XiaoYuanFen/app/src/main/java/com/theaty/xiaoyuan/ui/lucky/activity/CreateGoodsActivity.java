@@ -171,20 +171,20 @@ public class CreateGoodsActivity extends BaseActivity {
     void showGenderDialog() {
         if (genderDialog == null) {
             genderDialog = new ListDialog.Builder(this).setTitle("活动分类")
-                    .addAction(new ListDialog.ListDialogAction("活动分类2", new View.OnClickListener() {
+                    .addAction(new ListDialog.ListDialogAction("活动分类1", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            typeDetial.setText("1");
+                            typeDetial.setText("活动分类1");
                         }
                     })).addAction(new ListDialog.ListDialogAction("活动分类2", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            typeDetial.setText("2");
+                            typeDetial.setText("活动分类2");
                         }
                     })).addAction(new ListDialog.ListDialogAction("活动分类3", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            typeDetial.setText("3");
+                            typeDetial.setText("活动分类3");
                         }
                     })).create();
         }

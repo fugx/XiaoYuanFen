@@ -83,19 +83,19 @@ public class LuckyFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_creat_icon:
-                if (DatasStore.isLogin()) {
-                    CreateGoodsActivity.into(getContext());
-                } else {
-                    LoginActivity.into(getContext());
-                }
+                CreateGoodsActivity.into(getContext());
+//                if (DatasStore.isLogin()) {
+//                } else {
+//                    LoginActivity.into(getContext());
+//                }
                 break;
 
             case R.id.tv_creat:
-                if (DatasStore.isLogin()) {
-                    CreateGoodsActivity.into(getContext());
-                } else {
-                    LoginActivity.into(getContext());
-                }
+                CreateGoodsActivity.into(getContext());
+//                if (DatasStore.isLogin()) {
+//                } else {
+//                    LoginActivity.into(getContext());
+//                }
                 break;
 
             case R.id.ig_search_word:
