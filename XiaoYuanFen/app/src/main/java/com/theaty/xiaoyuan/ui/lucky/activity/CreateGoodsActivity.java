@@ -21,6 +21,8 @@ import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.theaty.xiaoyuan.R;
+import com.theaty.xiaoyuan.db.utils.GoodsDbUtil;
+import com.theaty.xiaoyuan.model.xiaoyuan.GoodsModel;
 import com.theaty.xiaoyuan.ui.mine.utils.ListDialog;
 
 import java.text.SimpleDateFormat;
@@ -59,6 +61,9 @@ public class CreateGoodsActivity extends BaseActivity {
     @BindView(R.id.tv_input)
     TextView input;
 
+    private static GoodsDbUtil goodsDbUtil;
+    private GoodsModel goodsModel;
+
     @Override
     protected View onCreateContentView() {
         return inflateContentView(R.layout.activity_create_goods);
@@ -73,8 +78,9 @@ public class CreateGoodsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         ButterKnife.bind(this);
+        goodsDbUtil = GoodsDbUtil.getInstance();
+        goodsModel = new GoodsModel();
         initData();
     }
 
@@ -91,7 +97,10 @@ public class CreateGoodsActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_release:
-
+                goodsModel.setGoodsClass(areaDetial.getText().toString());
+                goodsModel.setGoods_url(url.getText().toString());
+                goodsModel.setGoods_jingle(comtent.getText().toString());
+                goodsDbUtil.insert(goodsModel);
                 break;
             case R.id.ll_time:
                 //时间选择器
@@ -123,6 +132,8 @@ public class CreateGoodsActivity extends BaseActivity {
             public void onTimeSelect(Date date, View v) {
                 String formTime = getTime(date);
                 day.setText(formTime);
+                goodsModel.setGoods_addtime(0);
+                goodsModel.setGoodTime(date);
             }
         })
                 .setTimeSelectChangeListener(new OnTimeSelectChangeListener() {
@@ -171,20 +182,23 @@ public class CreateGoodsActivity extends BaseActivity {
     void showGenderDialog() {
         if (genderDialog == null) {
             genderDialog = new ListDialog.Builder(this).setTitle("活动分类")
-                    .addAction(new ListDialog.ListDialogAction("活动分类2", new View.OnClickListener() {
+                    .addAction(new ListDialog.ListDialogAction("活动分类1", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            typeDetial.setText("1");
+                            typeDetial.setText("活动分类1");
+                            goodsModel.setGoods_promotion_type(1);
                         }
                     })).addAction(new ListDialog.ListDialogAction("活动分类2", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            typeDetial.setText("2");
+                            typeDetial.setText("活动分类2");
+                            goodsModel.setGoods_promotion_type(2);
                         }
                     })).addAction(new ListDialog.ListDialogAction("活动分类3", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            typeDetial.setText("3");
+                            typeDetial.setText("活动分类3");
+                            goodsModel.setGoods_promotion_type(3);
                         }
                     })).create();
         }

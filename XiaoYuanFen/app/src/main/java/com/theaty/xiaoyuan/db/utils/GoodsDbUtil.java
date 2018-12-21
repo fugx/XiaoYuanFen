@@ -5,8 +5,8 @@ import android.util.Log;
 
 import com.theaty.xiaoyuan.db.DaoManager;
 import com.theaty.xiaoyuan.model.xiaoyuan.DaoSession;
-import com.theaty.xiaoyuan.model.xiaoyuan.MemberModel;
-import com.theaty.xiaoyuan.model.xiaoyuan.MemberModelDao;
+import com.theaty.xiaoyuan.model.xiaoyuan.GoodsModel;
+import com.theaty.xiaoyuan.model.xiaoyuan.GoodsModelDao;
 import com.theaty.xiaoyuan.system.AppContext;
 import com.theaty.xiaoyuan.ui.home.utils.Constant;
 
@@ -49,13 +49,13 @@ public class GoodsDbUtil {
     /**
      * 完成MemberModel记录的插入，如果表未创建，先创建MemberModel表
      *
-     * @param MemberModel
+     * @param goodsModel
      * @return
      */
-    public boolean insert(MemberModel MemberModel) {
+    public boolean insert(GoodsModel goodsModel) {
         boolean flag = false;
-        flag = mDaoSession.insert(MemberModel) != -1;
-        Log.i(TAG, "insert MemberModel :" + flag + "-->" + MemberModel.toString());
+        flag = mDaoSession.insert(goodsModel) != -1;
+        Log.i(TAG, "insert MemberModel :" + flag + "-->" + goodsModel.toString());
         return flag;
     }
 
@@ -63,16 +63,16 @@ public class GoodsDbUtil {
     /**
      * 插入多条数据，在子线程操作
      *
-     * @param MemberModels
+     * @param goodsModels
      * @return
      */
-    public boolean insertList(final List<MemberModel> MemberModels) {
+    public boolean insertList(final List<GoodsModel> goodsModels) {
         boolean flag = false;
         try {
             mDaoSession.runInTx(new Runnable() {
                 @Override
                 public void run() {
-                    for (MemberModel MemberModel : MemberModels) {
+                    for (GoodsModel MemberModel : goodsModels) {
                         mDaoSession.insertOrReplace(MemberModel);
                     }
                 }
@@ -87,14 +87,14 @@ public class GoodsDbUtil {
     /**
      * 删除单条记录
      *
-     * @param MemberModel
+     * @param goodsModel
      * @return
      */
-    public boolean delete(MemberModel MemberModel) {
+    public boolean delete(GoodsModel goodsModel) {
         boolean flag = false;
         try {
             //按照id删除
-            mDaoSession.delete(MemberModel);
+            mDaoSession.delete(goodsModel);
             flag = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -106,13 +106,13 @@ public class GoodsDbUtil {
     /**
      * 更新单条记录
      *
-     * @param MemberModel
+     * @param goodsModel
      * @return
      */
-    public boolean update(MemberModel MemberModel) {
+    public boolean update(GoodsModel goodsModel) {
         boolean flag = false;
         try {
-            mDaoSession.update(MemberModel);
+            mDaoSession.update(goodsModel);
             flag = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -125,8 +125,8 @@ public class GoodsDbUtil {
      *
      * @return
      */
-    public List<MemberModel> queryAll() {
-        return mDaoSession.loadAll(MemberModel.class);
+    public List<GoodsModel> queryAll() {
+        return mDaoSession.loadAll(GoodsModel.class);
 
     }
     /**
@@ -134,8 +134,8 @@ public class GoodsDbUtil {
      *
      * @return
      */
-    public List<MemberModel> queryOffset(int page) {
-        return mDaoSession.queryBuilder(MemberModel.class).offset(page*Constant.PAGE_LIMIT).limit(Constant.PAGE_LIMIT).list();
+    public List<GoodsModel> queryOffset(int page) {
+        return mDaoSession.queryBuilder(GoodsModel.class).offset(page*Constant.PAGE_LIMIT).limit(Constant.PAGE_LIMIT).list();
 
     }
 
@@ -147,7 +147,7 @@ public class GoodsDbUtil {
     public boolean deleteAll() {
         boolean flag = false;
         try {
-            mDaoSession.deleteAll(MemberModel.class);
+            mDaoSession.deleteAll(GoodsModel.class);
             flag = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -161,22 +161,22 @@ public class GoodsDbUtil {
      * @param musicId
      * @return
      */
-    public MemberModel queryMusicById(long musicId) {
-        return mDaoSession.load(MemberModel.class, musicId);
+    public GoodsModel queryMusicById(long musicId) {
+        return mDaoSession.load(GoodsModel.class, musicId);
     }
 
     /**
      * 使用native sql进行查询操作
      */
-    public List<MemberModel> queryMusicByNativeSql(String sql, String[] conditions) {
-        return mManager.getDaoSession().queryRaw(MemberModel.class, sql, conditions);
+    public List<GoodsModel> queryMusicByNativeSql(String sql, String[] conditions) {
+        return mManager.getDaoSession().queryRaw(GoodsModel.class, sql, conditions);
     }
 
     /**
      * 使用queryMusicByGroup进行查询操作
      */
-    public List<MemberModel> queryMusicByGroup() {
-        return mManager.getDaoSession().queryBuilder(MemberModel.class).where(new WhereCondition.StringCondition("1 GROUP BY MC_ID")).list();
+    public List<GoodsModel> queryMusicByGroup() {
+        return mManager.getDaoSession().queryBuilder(GoodsModel.class).where(new WhereCondition.StringCondition("1 GROUP BY MC_ID")).list();
     }
 
     /**
@@ -184,9 +184,9 @@ public class GoodsDbUtil {
      *
      * @return
      */
-    public List<MemberModel> queryMusicByQueryBuilder(long id) {
-        QueryBuilder<MemberModel> queryBuilder = mDaoSession.queryBuilder(MemberModel.class);
-        return queryBuilder.where(MemberModelDao.Properties.Member_id.eq(id)).list();
+    public List<GoodsModel> queryMusicByQueryBuilder(long id) {
+        QueryBuilder<GoodsModel> queryBuilder = mDaoSession.queryBuilder(GoodsModel.class);
+        return queryBuilder.where(GoodsModelDao.Properties.Goods_id.eq(id)).list();
     }
 
     /**
@@ -194,9 +194,9 @@ public class GoodsDbUtil {
      *
      * @return
      */
-    public List<MemberModel> queryMusicByMcid(int page, long id) {
-        QueryBuilder<MemberModel> queryBuilder = mDaoSession.queryBuilder(MemberModel.class);
-        return queryBuilder.where(MemberModelDao.Properties.Member_id.eq(id)).offset(page*Constant.PAGE_LIMIT).limit(Constant.PAGE_LIMIT).list();
+    public List<GoodsModel> queryMusicByMcid(int page, long id) {
+        QueryBuilder<GoodsModel> queryBuilder = mDaoSession.queryBuilder(GoodsModel.class);
+        return queryBuilder.where(GoodsModelDao.Properties.Goods_id.eq(id)).offset(page*Constant.PAGE_LIMIT).limit(Constant.PAGE_LIMIT).list();
     }
 
 
