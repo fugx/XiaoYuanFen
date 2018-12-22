@@ -25,71 +25,6 @@ import foundation.log.LogUtils;
  */
 
 public class PageModel extends BaseModel {
-    /**
-     * 会员id' ,
-     */
-    public int member_id;
-    /**
-     * 会员名称' ,
-     */
-    public String member_name;
-
-    /**
-     * 地区id' ,
-     */
-    public int member_areaid;
-    /**
-     * 城市id' ,
-     */
-    public int member_cityid;
-    /**
-     * 省份id' ,
-     */
-    public int member_provinceid;
-    /**
-     * 地区内容' ,
-     */
-    /**
-     * 校验key
-     */
-    public String key;
-    /**
-     * 教师标签,
-     */
-    private List<AttributeModel> attr_value = new ArrayList<AttributeModel>();
-
-    public List<AttributeModel> getAttrsModel() {
-        return attr_value;
-    }
-
-    /**
-     * 教师特点,
-     */
-    private List<AttributeModel> attr = new ArrayList<AttributeModel>();
-
-    public List<AttributeModel> getAttrModel() {
-        return attr;
-    }
-
-    /**
-     * 教师评价,
-     */
-    private List<EvaluateStoreModel> evaluation = new ArrayList<EvaluateStoreModel>();
-
-    public List<EvaluateStoreModel> getEvaluationModel() {
-        return evaluation;
-    }
-
-
-    //初始化默认值
-    public PageModel() {
-        member_id = 0;//会员id' ,
-        member_name = "";//会员名称' ,
-
-        member_areaid = 0;//地区id' ,
-        member_cityid = 0;//城市id' ,
-        member_provinceid = 0;//省份id' ,
-    }
 
     /**
      * 首页广告,
@@ -546,35 +481,35 @@ public class PageModel extends BaseModel {
      * @param curpage 页码
      * @param bib
      */
-    public void member_teacher_list(String key, String curpage, final BaseModelIB bib) {
-        String url = buildGetUrl("MemberIndex", "member_teacher_list"); // 构建API地址
-        if (bib == null)
-            LogUtils.e("TTError", "favorites_list"); // 回调不能为空
-
-        BIBStart(bib); // 开始bib
-        RequestParams params = new RequestParams();
-        params.addBodyParameter("key", key);
-        params.addBodyParameter("curpage", curpage);
-        (genHttpUtils()).send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {// 开始请求
-            @Override
-            public void onSuccess(ResponseInfo<String> resultInfo) {
-                DebugUtil.getIntance().getInfo(resultInfo.result, DatasStore.getDebugState());
-                ResultsModel rm = ResultsModel.getInstanseFromStr(resultInfo.result);
-                if (rm.getState() == 1) { // 成功
-                    ArrayList<SnsFriendModel> orderModels = ThtGosn.genGson().fromJson(rm.getJsonDatas(), new TypeToken<ArrayList<SnsFriendModel>>() {
-                    }.getType());
-                    BIBSucessful(bib, orderModels);
-                } else {// 失败
-                    BIBFailed(bib, rm); // 失败标志位
-                }
-            }
-
-            @Override
-            public void onFailure(HttpException arg0, String arg1) {
-                BIBFailed(bib, new ResultsModel(-999, "网络超时")); // 访问接口失败, 可能网络原因, 或者服务器宕机等造成
-            }
-        });
-    }
+//    public void member_teacher_list(String key, String curpage, final BaseModelIB bib) {
+//        String url = buildGetUrl("MemberIndex", "member_teacher_list"); // 构建API地址
+//        if (bib == null)
+//            LogUtils.e("TTError", "favorites_list"); // 回调不能为空
+//
+//        BIBStart(bib); // 开始bib
+//        RequestParams params = new RequestParams();
+//        params.addBodyParameter("key", key);
+//        params.addBodyParameter("curpage", curpage);
+//        (genHttpUtils()).send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {// 开始请求
+//            @Override
+//            public void onSuccess(ResponseInfo<String> resultInfo) {
+//                DebugUtil.getIntance().getInfo(resultInfo.result, DatasStore.getDebugState());
+//                ResultsModel rm = ResultsModel.getInstanseFromStr(resultInfo.result);
+//                if (rm.getState() == 1) { // 成功
+//                    ArrayList<SnsFriendModel> orderModels = ThtGosn.genGson().fromJson(rm.getJsonDatas(), new TypeToken<ArrayList<SnsFriendModel>>() {
+//                    }.getType());
+//                    BIBSucessful(bib, orderModels);
+//                } else {// 失败
+//                    BIBFailed(bib, rm); // 失败标志位
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(HttpException arg0, String arg1) {
+//                BIBFailed(bib, new ResultsModel(-999, "网络超时")); // 访问接口失败, 可能网络原因, 或者服务器宕机等造成
+//            }
+//        });
+//    }
 
     /**
      * 关注教师
@@ -824,20 +759,20 @@ public class PageModel extends BaseModel {
         });
     }
 
-    /**
-     * 检验自身是否一个合法的类型
-     *
-     * @return
-     */
-    public String isLegal() {
-        if (key.length() < 1) {
-            return " key非法";
-        }
-        if (TextUtils.isEmpty(member_name)) {
-            return " member_name非法";
-        }
-        return "access";
-    }
+//    /**
+//     * 检验自身是否一个合法的类型
+//     *
+//     * @return
+//     */
+//    public String isLegal() {
+//        if (key.length() < 1) {
+//            return " key非法";
+//        }
+//        if (TextUtils.isEmpty(member_name)) {
+//            return " member_name非法";
+//        }
+//        return "access";
+//    }
 
     /**
      * 获取版本号，检测版本更新

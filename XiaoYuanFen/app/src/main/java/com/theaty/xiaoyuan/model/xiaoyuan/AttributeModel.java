@@ -24,12 +24,10 @@ import org.greenrobot.greendao.annotation.Generated;
 /**
  * Created by Yecal on 2018/12/12.
  */
-@Entity
 public class AttributeModel extends BaseModel {
     /**
      * 属性id' ,
      */
-    @Id
     public int attr_value_id;
     /**
      * 属性名称' ,
@@ -73,95 +71,37 @@ public class AttributeModel extends BaseModel {
 //        attr_value = new ArrayList<AttributeModel>();//教师特点,
     }
 
-    @Generated(hash = 666839934)
-    public AttributeModel(int attr_value_id, String attr_name, int attr_id, int type_id, int attr_show, int attr_value_sort) {
-        this.attr_value_id = attr_value_id;
-        this.attr_name = attr_name;
-        this.attr_id = attr_id;
-        this.type_id = type_id;
-        this.attr_show = attr_show;
-        this.attr_value_sort = attr_value_sort;
-    }
-
-    public int getAttr_value_id() {
-        return this.attr_value_id;
-    }
-
-    public void setAttr_value_id(int attr_value_id) {
-        this.attr_value_id = attr_value_id;
-    }
-
-    public String getAttr_name() {
-        return this.attr_name;
-    }
-
-    public void setAttr_name(String attr_name) {
-        this.attr_name = attr_name;
-    }
-
-    public int getAttr_id() {
-        return this.attr_id;
-    }
-
-    public void setAttr_id(int attr_id) {
-        this.attr_id = attr_id;
-    }
-
-    public int getType_id() {
-        return this.type_id;
-    }
-
-    public void setType_id(int type_id) {
-        this.type_id = type_id;
-    }
-
-    public int getAttr_show() {
-        return this.attr_show;
-    }
-
-    public void setAttr_show(int attr_show) {
-        this.attr_show = attr_show;
-    }
-
-    public int getAttr_value_sort() {
-        return this.attr_value_sort;
-    }
-
-    public void setAttr_value_sort(int attr_value_sort) {
-        this.attr_value_sort = attr_value_sort;
-    }
-
     /**
      * 标签列表
      *
      * @param type_id 类型1动画2视频3教师
      * @param bib
      */
-//    public void tag_list(String type_id, final BaseModelIB bib) {
-//        String url = buildGetUrl("Goods", "tag_list"); // 构建API地址
-//        if (bib == null)
-//            LogUtils.e("TTError", "favorites_list"); // 回调不能为空
-//        BIBStart(bib); // 开始bib
-//        RequestParams params = new RequestParams();
-//        params.addBodyParameter("type_id", type_id);
-//        (genHttpUtils()).send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {// 开始请求
-//            @Override
-//            public void onSuccess(ResponseInfo<String> resultInfo) {
-//                DebugUtil.getIntance().getInfo(resultInfo.result, DatasStore.getDebugState());
-//                ResultsModel rm = ResultsModel.getInstanseFromStr(resultInfo.result);
-//                if (rm.getState() == 1) { // 成功
-//                    ArrayList<AttributeModel> orderModels = ThtGosn.genGson().fromJson(rm.getJsonDatas(), new TypeToken<ArrayList<AttributeModel>>() {
-//                    }.getType());
-//                    BIBSucessful(bib, orderModels);
-//                } else {// 失败
-//                    BIBFailed(bib, rm); // 失败标志位
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(HttpException arg0, String arg1) {
-//                BIBFailed(bib, new ResultsModel(-999, "网络超时")); // 访问接口失败, 可能网络原因, 或者服务器宕机等造成
-//            }
-//        });
-//    }
+    public void tag_list(String type_id, final BaseModelIB bib) {
+        String url = buildGetUrl("Goods", "tag_list"); // 构建API地址
+        if (bib == null)
+            LogUtils.e("TTError", "favorites_list"); // 回调不能为空
+        BIBStart(bib); // 开始bib
+        RequestParams params = new RequestParams();
+        params.addBodyParameter("type_id", type_id);
+        (genHttpUtils()).send(HttpRequest.HttpMethod.POST, url, params, new RequestCallBack<String>() {// 开始请求
+            @Override
+            public void onSuccess(ResponseInfo<String> resultInfo) {
+                DebugUtil.getIntance().getInfo(resultInfo.result, DatasStore.getDebugState());
+                ResultsModel rm = ResultsModel.getInstanseFromStr(resultInfo.result);
+                if (rm.getState() == 1) { // 成功
+                    ArrayList<AttributeModel> orderModels = ThtGosn.genGson().fromJson(rm.getJsonDatas(), new TypeToken<ArrayList<AttributeModel>>() {
+                    }.getType());
+                    BIBSucessful(bib, orderModels);
+                } else {// 失败
+                    BIBFailed(bib, rm); // 失败标志位
+                }
+            }
+
+            @Override
+            public void onFailure(HttpException arg0, String arg1) {
+                BIBFailed(bib, new ResultsModel(-999, "网络超时")); // 访问接口失败, 可能网络原因, 或者服务器宕机等造成
+            }
+        });
+    }
 }
