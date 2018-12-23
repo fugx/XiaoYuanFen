@@ -20,12 +20,16 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.theaty.xiaoyuan.R;
+import com.theaty.xiaoyuan.db.utils.PlayDaoOpe;
 import com.theaty.xiaoyuan.model.BaseModel;
 import com.theaty.xiaoyuan.model.ResultsModel;
 import com.theaty.xiaoyuan.model.xiaoyuan.GoodsModel;
 import com.theaty.xiaoyuan.model.xiaoyuan.MemberModel;
+import com.theaty.xiaoyuan.model.xiaoyuan.Play;
 import com.theaty.xiaoyuan.system.DatasStore;
 import com.theaty.xiaoyuan.ui.MainActivity;
+import com.theaty.xiaoyuan.ui.home.adapter.CityPlayAdapter;
+import com.theaty.xiaoyuan.ui.home.adapter.OutdoorAdapter;
 import com.theaty.xiaoyuan.ui.login.LoginActivity;
 
 import java.util.ArrayList;
@@ -60,9 +64,9 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.tv_tryst)
     TextView name3;
     @BindView(R.id.rview_outdoor)
-    RecyclerView videoRecycleView;
+    RecyclerView outdoorRecycleView;
     @BindView(R.id.rview_city_play)
-    RecyclerView animationRecycleView;
+    RecyclerView cityPlayRecycleView;
     @BindView(R.id.rview_tryst)
     RecyclerView teacherRecycleView;
     @BindView(R.id.super_swipe_view)
@@ -71,16 +75,16 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.banner_guide_content)
     BGABanner mContentBanner;
 
-    private ArrayList<GoodsModel> outdoors = new ArrayList<>();
-    private ArrayList<GoodsModel> cityPlays  = new ArrayList<>();
-    private ArrayList<GoodsModel> trysts  = new ArrayList<>();
+    private ArrayList<Play> outdoors = new ArrayList<>();
+    private ArrayList<Play> cityPlays  = new ArrayList<>();
+    private ArrayList<Play> trysts  = new ArrayList<>();
 
     private MainActivity activity;
     private IntentFilter intentFilter;
     private NetworkChangeReceiver networkChangeReceiver;
 
-//    AnimationAdapter animationAdapter;
-//    VideoAdapter videoAdapter;
+    private OutdoorAdapter outdoorAdapter;
+    private CityPlayAdapter cityPlayAdapter;
 
     @Override
     protected View onCreateContentView() {
@@ -91,7 +95,7 @@ public class HomeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
-        activity = (MainActivity)getActivity();
+        activity = (MainActivity) getActivity();
 
         intentFilter = new IntentFilter();
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
@@ -114,7 +118,7 @@ public class HomeFragment extends BaseFragment {
 
     private void initView() {
         /*
-         * 拓展课程
+         * 户外-游山玩水
          */
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity()) {
             @Override
@@ -123,44 +127,43 @@ public class HomeFragment extends BaseFragment {
             }
         };
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-//        videoRecycleView.setLayoutManager(layoutManager);
-//        videoAdapter = new VideoAdapter(getActivity(),R.layout.item_video, videoLists);
-//        videoRecycleView.setAdapter(videoAdapter);
-//
-//        videoAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                GoodsModel good = videoAdapter.getData().get(position);
-//                activity.course = good;
+        outdoorRecycleView.setLayoutManager(layoutManager);
+        outdoorAdapter = new OutdoorAdapter(activity,R.layout.item_play1, outdoors);
+        outdoorRecycleView.setAdapter(outdoorAdapter);
+
+        outdoorAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Play good = outdoorAdapter.getData().get(position);
 //                Intent intent = new Intent(getContext(), VideoDetailActivity.class);
 //                intent.putExtra("good", good);
 //                startActivity(intent);
-//            }
-//        });
-//        videoAdapter.setEmptyView(initEmptyView("无推荐课程"));
+            }
+        });
+        outdoorAdapter.setEmptyView(initEmptyView("无户外活动"));
 
         /*
-         * 基础课程
+         * 市区-吃喝玩乐
          */
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(getActivity());
         layoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
-//        animationRecycleView.setLayoutManager(layoutManager1);
-//        animationAdapter = new AnimationAdapter(getActivity(),R.layout.item_animation, animationLists);
-//        animationRecycleView.setAdapter(animationAdapter);
-//        animationAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                GoodsModel good = animationAdapter.getData().get(position);
+        cityPlayRecycleView.setLayoutManager(layoutManager1);
+        cityPlayAdapter = new CityPlayAdapter(getActivity(),R.layout.item_play1, cityPlays);
+        cityPlayRecycleView.setAdapter(cityPlayAdapter);
+        cityPlayAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Play play = cityPlayAdapter.getData().get(position);
 //                activity.course = good;
 //                Intent intent = new Intent(getContext(), AnimationDetailActivity.class);
 //                intent.putExtra("good", good);
 //                startActivity(intent);
-//            }
-//        });
-//        animationAdapter.setEmptyView(initEmptyView("无推荐课程"));
+            }
+        });
+        cityPlayAdapter.setEmptyView(initEmptyView("无市区活动"));
 
         /*
-         * 外教一对一
+         * 缘分-秘密约会
          */
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(getActivity());
         layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -180,6 +183,9 @@ public class HomeFragment extends BaseFragment {
     }
 
     public void getData() {
+        outdoors.addAll(PlayDaoOpe.queryForTypeId(activity,1L));
+        cityPlays.addAll(PlayDaoOpe.queryForTypeId(activity,2L));
+        trysts.addAll(PlayDaoOpe.queryForTypeId(activity,3L));
         //调用首页接口，获取首页数据
 //        new MemberModel().first_page(level, new BaseModel.BaseModelIB() {
 //            @Override

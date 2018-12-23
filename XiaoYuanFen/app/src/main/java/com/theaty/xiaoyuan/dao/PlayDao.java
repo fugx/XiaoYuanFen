@@ -44,12 +44,13 @@ public class PlayDao extends AbstractDao<Play, Long> {
         public final static Property Fee = new Property(7, Double.class, "fee", false, "FEE");
         public final static Property Insurance = new Property(8, Double.class, "insurance", false, "INSURANCE");
         public final static Property Introduction = new Property(9, String.class, "introduction", false, "INTRODUCTION");
-        public final static Property Url = new Property(10, String.class, "url", false, "URL");
-        public final static Property Note = new Property(11, String.class, "note", false, "NOTE");
-        public final static Property TempSession = new Property(12, String.class, "tempSession", false, "TEMP_SESSION");
-        public final static Property Photoes = new Property(13, String.class, "photoes", false, "PHOTOES");
-        public final static Property MemberId = new Property(14, Long.class, "memberId", false, "MEMBER_ID");
-        public final static Property TypeId = new Property(15, Long.class, "typeId", false, "TYPE_ID");
+        public final static Property Photo = new Property(10, String.class, "photo", false, "PHOTO");
+        public final static Property Url = new Property(11, String.class, "url", false, "URL");
+        public final static Property Note = new Property(12, String.class, "note", false, "NOTE");
+        public final static Property TempSession = new Property(13, String.class, "tempSession", false, "TEMP_SESSION");
+        public final static Property Photoes = new Property(14, String.class, "photoes", false, "PHOTOES");
+        public final static Property MemberId = new Property(15, Long.class, "memberId", false, "MEMBER_ID");
+        public final static Property TypeId = new Property(16, Long.class, "typeId", false, "TYPE_ID");
     }
 
     private DaoSession daoSession;
@@ -83,12 +84,13 @@ public class PlayDao extends AbstractDao<Play, Long> {
                 "\"FEE\" REAL," + // 7: fee
                 "\"INSURANCE\" REAL," + // 8: insurance
                 "\"INTRODUCTION\" TEXT," + // 9: introduction
-                "\"URL\" TEXT," + // 10: url
-                "\"NOTE\" TEXT," + // 11: note
-                "\"TEMP_SESSION\" TEXT," + // 12: tempSession
-                "\"PHOTOES\" TEXT," + // 13: photoes
-                "\"MEMBER_ID\" INTEGER," + // 14: memberId
-                "\"TYPE_ID\" INTEGER);"); // 15: typeId
+                "\"PHOTO\" TEXT," + // 10: photo
+                "\"URL\" TEXT," + // 11: url
+                "\"NOTE\" TEXT," + // 12: note
+                "\"TEMP_SESSION\" TEXT," + // 13: tempSession
+                "\"PHOTOES\" TEXT," + // 14: photoes
+                "\"MEMBER_ID\" INTEGER," + // 15: memberId
+                "\"TYPE_ID\" INTEGER);"); // 16: typeId
     }
 
     /** Drops the underlying database table. */
@@ -143,34 +145,39 @@ public class PlayDao extends AbstractDao<Play, Long> {
             stmt.bindString(10, introduction);
         }
  
+        String photo = entity.getPhoto();
+        if (photo != null) {
+            stmt.bindString(11, photo);
+        }
+ 
         String url = entity.getUrl();
         if (url != null) {
-            stmt.bindString(11, url);
+            stmt.bindString(12, url);
         }
  
         String note = entity.getNote();
         if (note != null) {
-            stmt.bindString(12, note);
+            stmt.bindString(13, note);
         }
  
         String tempSession = entity.getTempSession();
         if (tempSession != null) {
-            stmt.bindString(13, tempSession);
+            stmt.bindString(14, tempSession);
         }
  
         List photoes = entity.getPhotoes();
         if (photoes != null) {
-            stmt.bindString(14, photoesConverter.convertToDatabaseValue(photoes));
+            stmt.bindString(15, photoesConverter.convertToDatabaseValue(photoes));
         }
  
         Long memberId = entity.getMemberId();
         if (memberId != null) {
-            stmt.bindLong(15, memberId);
+            stmt.bindLong(16, memberId);
         }
  
         Long typeId = entity.getTypeId();
         if (typeId != null) {
-            stmt.bindLong(16, typeId);
+            stmt.bindLong(17, typeId);
         }
     }
 
@@ -220,34 +227,39 @@ public class PlayDao extends AbstractDao<Play, Long> {
             stmt.bindString(10, introduction);
         }
  
+        String photo = entity.getPhoto();
+        if (photo != null) {
+            stmt.bindString(11, photo);
+        }
+ 
         String url = entity.getUrl();
         if (url != null) {
-            stmt.bindString(11, url);
+            stmt.bindString(12, url);
         }
  
         String note = entity.getNote();
         if (note != null) {
-            stmt.bindString(12, note);
+            stmt.bindString(13, note);
         }
  
         String tempSession = entity.getTempSession();
         if (tempSession != null) {
-            stmt.bindString(13, tempSession);
+            stmt.bindString(14, tempSession);
         }
  
         List photoes = entity.getPhotoes();
         if (photoes != null) {
-            stmt.bindString(14, photoesConverter.convertToDatabaseValue(photoes));
+            stmt.bindString(15, photoesConverter.convertToDatabaseValue(photoes));
         }
  
         Long memberId = entity.getMemberId();
         if (memberId != null) {
-            stmt.bindLong(15, memberId);
+            stmt.bindLong(16, memberId);
         }
  
         Long typeId = entity.getTypeId();
         if (typeId != null) {
-            stmt.bindLong(16, typeId);
+            stmt.bindLong(17, typeId);
         }
     }
 
@@ -275,12 +287,13 @@ public class PlayDao extends AbstractDao<Play, Long> {
             cursor.isNull(offset + 7) ? null : cursor.getDouble(offset + 7), // fee
             cursor.isNull(offset + 8) ? null : cursor.getDouble(offset + 8), // insurance
             cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // introduction
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // url
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // note
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // tempSession
-            cursor.isNull(offset + 13) ? null : photoesConverter.convertToEntityProperty(cursor.getString(offset + 13)), // photoes
-            cursor.isNull(offset + 14) ? null : cursor.getLong(offset + 14), // memberId
-            cursor.isNull(offset + 15) ? null : cursor.getLong(offset + 15) // typeId
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // photo
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // url
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // note
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // tempSession
+            cursor.isNull(offset + 14) ? null : photoesConverter.convertToEntityProperty(cursor.getString(offset + 14)), // photoes
+            cursor.isNull(offset + 15) ? null : cursor.getLong(offset + 15), // memberId
+            cursor.isNull(offset + 16) ? null : cursor.getLong(offset + 16) // typeId
         );
         return entity;
     }
@@ -297,12 +310,13 @@ public class PlayDao extends AbstractDao<Play, Long> {
         entity.setFee(cursor.isNull(offset + 7) ? null : cursor.getDouble(offset + 7));
         entity.setInsurance(cursor.isNull(offset + 8) ? null : cursor.getDouble(offset + 8));
         entity.setIntroduction(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setUrl(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setNote(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setTempSession(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setPhotoes(cursor.isNull(offset + 13) ? null : photoesConverter.convertToEntityProperty(cursor.getString(offset + 13)));
-        entity.setMemberId(cursor.isNull(offset + 14) ? null : cursor.getLong(offset + 14));
-        entity.setTypeId(cursor.isNull(offset + 15) ? null : cursor.getLong(offset + 15));
+        entity.setPhoto(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setUrl(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setNote(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setTempSession(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setPhotoes(cursor.isNull(offset + 14) ? null : photoesConverter.convertToEntityProperty(cursor.getString(offset + 14)));
+        entity.setMemberId(cursor.isNull(offset + 15) ? null : cursor.getLong(offset + 15));
+        entity.setTypeId(cursor.isNull(offset + 16) ? null : cursor.getLong(offset + 16));
      }
     
     @Override

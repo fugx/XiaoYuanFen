@@ -121,4 +121,24 @@ public class PlayDaoOpe {
         // List<Student> list = build.list();
         return builder.where(PlayDao.Properties.PlayId.eq(id)).list();
     }
+
+    /**
+     * 根据id，其他的字段类似
+     *
+     * @param context
+     * @param id
+     * @return
+     */
+    public static List<Play> queryForTypeId(Context context, long id) {
+        QueryBuilder<Play> builder = DbManager.getDaoSession(context).getPlayDao().queryBuilder();
+        /**
+         * 返回当前id的数据集合,当然where(这里面可以有多组，做为条件);
+         * 这里build.list()；与where(StudentDao.Properties.Id.eq(id)).list()结果是一样的；
+         * 在QueryBuilder类中list()方法return build().list();
+         *
+         */
+        // Query<Student> build = builder.where(StudentDao.Properties.Id.eq(id)).build();
+        // List<Student> list = build.list();
+        return builder.where(PlayDao.Properties.TypeId.eq(id),PlayDao.Properties.Enabled.eq(1)).list();
+    }
 }

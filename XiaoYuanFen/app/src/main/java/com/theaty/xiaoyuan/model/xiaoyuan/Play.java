@@ -21,7 +21,7 @@ import com.theaty.xiaoyuan.dao.PlayDao;
 /**
  * Created by Yecal on 2018/12/22.
  * 活动
- * ID、活动名、标题、时间、地点、是否有效、活动最大人数、活动费用、保险费、活动简介、链接url、
+ * ID、活动名、标题、时间、地点、是否有效、活动最大人数、活动费用、保险费、活动简介、封面图、链接url、
  * 注意事项、临时群、<标签>、<联系人>、<照片>、<评论>、<参加的用户>、发起用户、活动类别
  */
 @Entity
@@ -40,7 +40,7 @@ public class Play {
      */
     private String title;
     /**
-     * 时间 ,
+     * 活动时间 ,
      */
     private Long time;
     /**
@@ -67,6 +67,10 @@ public class Play {
      * 活动简介 ,
      */
     private String introduction;
+    /**
+     * 封面图 ,
+     */
+    private String photo;
     /**
      * 链接url ,
      */
@@ -122,11 +126,10 @@ public class Play {
     /** Used for active entity operations. */
     @Generated(hash = 1885420305)
     private transient PlayDao myDao;
-    @Generated(hash = 1116410756)
-    public Play(Long playId, String name, String title, Long time, String area,
-            int enabled, int num, Double fee, Double insurance, String introduction,
-            String url, String note, String tempSession, List<String> photoes,
-            Long memberId, Long typeId) {
+    @Generated(hash = 1521195037)
+    public Play(Long playId, String name, String title, Long time, String area, int enabled, int num,
+            Double fee, Double insurance, String introduction, String photo, String url, String note,
+            String tempSession, List<String> photoes, Long memberId, Long typeId) {
         this.playId = playId;
         this.name = name;
         this.title = title;
@@ -137,6 +140,7 @@ public class Play {
         this.fee = fee;
         this.insurance = insurance;
         this.introduction = introduction;
+        this.photo = photo;
         this.url = url;
         this.note = note;
         this.tempSession = tempSession;
@@ -443,6 +447,12 @@ public class Play {
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getPlayDao() : null;
+    }
+    public String getPhoto() {
+        return this.photo;
+    }
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
 }

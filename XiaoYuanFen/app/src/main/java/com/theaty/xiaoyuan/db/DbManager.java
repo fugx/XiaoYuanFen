@@ -71,6 +71,7 @@ public class DbManager {
     /**
      * 获取DaoMaster
      *
+     * 判断是否存在数据库，如果没有则创建数据库
      * @param context
      * @return
      */
@@ -78,7 +79,8 @@ public class DbManager {
         if (null == mDaoMaster) {
             synchronized (DbManager.class) {
                 if (null == mDaoMaster) {
-                    mDaoMaster = new DaoMaster(getWritableDatabase(context));
+                    MyOpenHelper helper = new MyOpenHelper(context,DB_NAME,null);
+                    mDaoMaster = new DaoMaster(helper.getWritableDatabase());
                 }
             }
         }
