@@ -29,6 +29,7 @@ import com.theaty.xiaoyuan.model.xiaoyuan.Play;
 import com.theaty.xiaoyuan.system.DatasStore;
 import com.theaty.xiaoyuan.ui.MainActivity;
 import com.theaty.xiaoyuan.ui.home.adapter.CityPlayAdapter;
+import com.theaty.xiaoyuan.ui.home.adapter.MeetingAdapter;
 import com.theaty.xiaoyuan.ui.home.adapter.OutdoorAdapter;
 import com.theaty.xiaoyuan.ui.login.LoginActivity;
 
@@ -85,6 +86,7 @@ public class HomeFragment extends BaseFragment {
 
     private OutdoorAdapter outdoorAdapter;
     private CityPlayAdapter cityPlayAdapter;
+    private MeetingAdapter meetingAdapter;
 
     @Override
     protected View onCreateContentView() {
@@ -101,8 +103,8 @@ public class HomeFragment extends BaseFragment {
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         networkChangeReceiver = new NetworkChangeReceiver();
 //        activity.registerReceiver(networkChangeReceiver,intentFilter);
-//
-//        superSwipeView.setVisibility(View.VISIBLE);
+
+        superSwipeView.setVisibility(View.VISIBLE);
 
         getData();
         initView();
@@ -126,7 +128,7 @@ public class HomeFragment extends BaseFragment {
                 return false;
             }
         };
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         outdoorRecycleView.setLayoutManager(layoutManager);
         outdoorAdapter = new OutdoorAdapter(activity,R.layout.item_play1, outdoors);
         outdoorRecycleView.setAdapter(outdoorAdapter);
@@ -166,25 +168,28 @@ public class HomeFragment extends BaseFragment {
          * 缘分-秘密约会
          */
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(getActivity());
-        layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
-//        teacherRecycleView.setLayoutManager(layoutManager2);
-//        teacherAdapter = new GoodTeacherAdapter(getActivity(),R.layout.item_good_teacher, teacherLists);
-//        teacherRecycleView.setAdapter(teacherAdapter);
-//        teacherAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                MemberModel member = teacherAdapter.getData().get(position);
+        layoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
+        teacherRecycleView.setLayoutManager(layoutManager2);
+        meetingAdapter = new MeetingAdapter(getActivity(),R.layout.item_meeting, trysts);
+        teacherRecycleView.setAdapter(meetingAdapter);
+        meetingAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Play member = meetingAdapter.getData().get(position);
 //                Intent intent = new Intent(getContext(), TeacherDetailActivity.class);
 //                intent.putExtra("member", member);
 //                startActivity(intent);
-//            }
-//        });
-//        teacherAdapter.setEmptyView(initEmptyView("无推荐教师"));
+            }
+        });
+        meetingAdapter.setEmptyView(initEmptyView("无约会"));
     }
 
     public void getData() {
+        outdoors.clear();
         outdoors.addAll(PlayDaoOpe.queryForTypeId(activity,1L));
+        cityPlays.clear();
         cityPlays.addAll(PlayDaoOpe.queryForTypeId(activity,2L));
+        trysts.clear();
         trysts.addAll(PlayDaoOpe.queryForTypeId(activity,3L));
         //调用首页接口，获取首页数据
 //        new MemberModel().first_page(level, new BaseModel.BaseModelIB() {
