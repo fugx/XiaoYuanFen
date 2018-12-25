@@ -2,6 +2,9 @@ package com.theaty.xiaoyuan.model.xiaoyuan;
 
 import com.theaty.xiaoyuan.model.BaseModel;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +13,12 @@ import java.util.List;
  * @desc
  * 活动
  */
+@Entity
 public class GoodsModel extends BaseModel {
     /**
      * 活动id(sku)' ,
      */
+    @Id
     public int goods_id;
     /**
      * 活动公共表id' ,

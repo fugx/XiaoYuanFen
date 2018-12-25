@@ -6,11 +6,9 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonlibrary/commonlibrary.iml" filepath="$PROJECT_DIR$/commonlibrary/commonlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/pickerview/pickerview.iml" filepath="$PROJECT_DIR$/pickerview/pickerview.iml" />
-      <module fileurl="file://C:\myProject\XiaoYuanFen\pickerview\pickerview.iml" filepath="C:\myProject\XiaoYuanFen\pickerview\pickerview.iml" />
       <module fileurl="file://$PROJECT_DIR$/umengshare/umengshare.iml" filepath="$PROJECT_DIR$/umengshare/umengshare.iml" />
       <module fileurl="file://$PROJECT_DIR$/versionmanagerlibrary/versionmanagerlibrary.iml" filepath="$PROJECT_DIR$/versionmanagerlibrary/versionmanagerlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/wheelview/wheelview.iml" filepath="$PROJECT_DIR$/wheelview/wheelview.iml" />
-      <module fileurl="file://C:\myProject\XiaoYuanFen\wheelview\wheelview.iml" filepath="C:\myProject\XiaoYuanFen\wheelview\wheelview.iml" />
     </modules>
   </component>
 </project>

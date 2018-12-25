@@ -46,7 +46,7 @@
             android:textSize="@dimen/font_18"/>
     </RelativeLayout>
 
-    <View style="@style/horizontal_line05" />
+    <View style="@style/horizontal_line1" />
 
     <LinearLayout
         android:id="@+id/ll_time"
