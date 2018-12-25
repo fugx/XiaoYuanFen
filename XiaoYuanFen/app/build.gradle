@@ -76,20 +76,27 @@ android {
     }
 }
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+greendao {
+    //数据库的schema版本，也可以理解为数据库版本号
+    schemaVersion 2
+    //设置DaoMaster、DaoSession、Dao包名，也就是要放置这些类的包的全路径。
+    daoPackage 'com.theaty.xiaoyuan.dao'
+    //设置DaoMaster、DaoSession、Dao目录
+    targetGenDir 'src/main/java'
+}
 
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':commonlibrary')
     compile project(':umengshare')
     compile project(':versionmanagerlibrary')
-    compile project(':pickerview')//时间选择器
-
-   // implementation 'com.android.support:appcompat-v7:26.0.0-beta1'
+    compile project(':pickerview')
+    //时间选择器
+    // implementation 'com.android.support:appcompat-v7:26.0.0-beta1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:0.5'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
-
     compile "com.jakewharton:butterknife:${libs.butterknife}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${libs.butterknife}"
     compile "com.android.support:support-v4:${libs.supportLibrary}"
@@ -106,10 +113,12 @@ dependencies {
     //recyclerView的万能适配器BRVAH
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
-
     //个推
     compile 'com.getui:sdk:2.12.3.0'
     implementation 'cn.bingoogolapple:bga-banner:2.2.4'
-
-    compile 'org.greenrobot:greendao:3.2.2'//数据库框架
+    compile 'org.greenrobot:greendao:3.2.2'
+    // add library
+    compile 'org.greenrobot:greendao-generator:3.2.2'
+    //数据库框架
+    implementation project(':labels')
 }

@@ -11,13 +11,16 @@ import com.theaty.xiaoyuan.model.ResultsModel;
 import com.theaty.xiaoyuan.model.adapter.ThtGosn;
 import com.theaty.xiaoyuan.system.DatasStore;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+
 import foundation.log.LogUtils;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * @author Theaty
  * Created by Yecal on 2018/12/12.
  */
-
 public class OrderGoodsModel extends BaseModel {
     /**
      * 订单商品表索引id' ,
@@ -90,7 +93,7 @@ public class OrderGoodsModel extends BaseModel {
     /**
      * 用户' ,
      */
-    public MemberModel member_info;
+//    public MemberModel member_info;
     /**
      * 预约时间' ,
      */
@@ -110,7 +113,7 @@ public class OrderGoodsModel extends BaseModel {
     /**
      * 聊天主题' ,
      */
-    public GoodsModel relation_goods;
+//    public GoodsModel relation_goods;
     /**
      * 商品状态 1结束
      */
@@ -139,8 +142,8 @@ public class OrderGoodsModel extends BaseModel {
         order_type = 0;//类型（1动画2视频3教师4充值）' ,
         relation_goods_id = 0;//聊天课程' ,
         chat_topic = "";//聊天话题' ,
-        member_info = new MemberModel();//用户信息
-        relation_goods = new GoodsModel();//聊天主题
+//        member_info = new MemberModel();//用户信息
+//        relation_goods = new GoodsModel();//聊天主题
         date = "";//预约时间
         class_time = 0;//开始时间
         class_end = 0;//结束时间

@@ -12,15 +12,18 @@ import com.theaty.xiaoyuan.model.ResultsModel;
 import com.theaty.xiaoyuan.model.adapter.ThtGosn;
 import com.theaty.xiaoyuan.system.DatasStore;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import foundation.log.LogUtils;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by Yecal on 2018/12/12.
  */
-
 public class AttributeModel extends BaseModel {
     /**
      * 属性id' ,
@@ -38,8 +41,8 @@ public class AttributeModel extends BaseModel {
      * 所属类型id' ,
      */
     public int type_id;
-/** 属性值列' , */
-//public  String  attr_value;
+    /** 属性值列' , */
+    //public  String  attr_value;
     /**
      * 是否显示。0为不显示、1为显示' ,
      */
@@ -52,11 +55,7 @@ public class AttributeModel extends BaseModel {
     /**
      * 教师特点,
      */
-    private List<AttributeModel> attr_value = new ArrayList<AttributeModel>();
-
-    public List<AttributeModel> getAttrModel() {
-        return attr_value;
-    }
+//    private List<AttributeModel> attr_value = new ArrayList<AttributeModel>();
 
 
     //初始化默认值
@@ -69,7 +68,7 @@ public class AttributeModel extends BaseModel {
 //attr_value  = "";//属性值列' ,
         attr_show = 0;//是否显示。0为不显示、1为显示' ,
         attr_value_sort = 0;//排序' ,
-        attr_value = new ArrayList<AttributeModel>();//教师特点,
+//        attr_value = new ArrayList<AttributeModel>();//教师特点,
     }
 
     /**

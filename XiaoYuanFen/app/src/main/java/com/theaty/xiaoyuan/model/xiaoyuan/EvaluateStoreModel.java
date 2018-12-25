@@ -1,6 +1,10 @@
 package com.theaty.xiaoyuan.model.xiaoyuan;
 import com.theaty.xiaoyuan.model.BaseModel;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Generated;
+
 /**
  * 
  * @author Theaty 
@@ -53,6 +57,5 @@ seval_deliverycredit  = 0;//发货速度评分' ,
 seval_des  = "";//评价' ,
 member_avatar = "";//用户头像
 }
-
 
 }

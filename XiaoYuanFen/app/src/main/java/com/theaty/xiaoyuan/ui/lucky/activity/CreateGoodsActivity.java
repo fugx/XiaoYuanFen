@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,6 +19,8 @@ import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.theaty.xiaoyuan.R;
+import com.theaty.xiaoyuan.db.utils.PlayDaoOpe;
+import com.theaty.xiaoyuan.model.xiaoyuan.Play;
 import com.theaty.xiaoyuan.ui.mine.utils.ListDialog;
 
 import java.text.SimpleDateFormat;
@@ -31,6 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import foundation.base.activity.BaseActivity;
+import foundation.toast.ToastUtil;
 
 /**
  * Created by fu on 2018/12/18.
@@ -40,8 +41,8 @@ public class CreateGoodsActivity extends BaseActivity {
 
     @BindView(R.id.tv_release)
     TextView release;
-    @BindView(R.id.ll_time)
-    LinearLayout time;
+    @BindView(R.id.tv_title)
+    TextView title;
     @BindView(R.id.tv_day)
     TextView day;
 //    @BindView(R.id.ll_area)
@@ -59,6 +60,8 @@ public class CreateGoodsActivity extends BaseActivity {
     @BindView(R.id.tv_input)
     TextView input;
 
+    private Play play;
+
     @Override
     protected View onCreateContentView() {
         return inflateContentView(R.layout.activity_create_goods);
@@ -73,8 +76,8 @@ public class CreateGoodsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         ButterKnife.bind(this);
+        play = new Play();
         initData();
     }
 
@@ -91,7 +94,14 @@ public class CreateGoodsActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_release:
-
+                play.setName(title.getText().toString());
+                play.setTitle(title.getText().toString());
+                play.setArea(areaDetial.getText().toString());
+                play.setUrl(url.getText().toString());
+                play.setIntroduction(comtent.getText().toString());
+                PlayDaoOpe.insertData(this,play);
+                ToastUtil.showToast("发布成功！");
+                finish();
                 break;
             case R.id.ll_time:
                 //时间选择器
@@ -115,7 +125,7 @@ public class CreateGoodsActivity extends BaseActivity {
         defaultDate.set(2018, 1, 1);
         Calendar startDate = Calendar.getInstance();
         Calendar endDate = Calendar.getInstance();
-        startDate.set(2018, 1, 1);
+        startDate.setTime(new Date());
         endDate.set(2020, 1, 1);
 
         timePickerView = new TimePickerBuilder(this, new OnTimeSelectListener() {
@@ -123,6 +133,7 @@ public class CreateGoodsActivity extends BaseActivity {
             public void onTimeSelect(Date date, View v) {
                 String formTime = getTime(date);
                 day.setText(formTime);
+                play.setTime(date.getTime());
             }
         })
                 .setTimeSelectChangeListener(new OnTimeSelectChangeListener() {
@@ -175,16 +186,19 @@ public class CreateGoodsActivity extends BaseActivity {
                         @Override
                         public void onClick(View view) {
                             typeDetial.setText("活动分类1");
+
                         }
                     })).addAction(new ListDialog.ListDialogAction("活动分类2", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             typeDetial.setText("活动分类2");
+
                         }
                     })).addAction(new ListDialog.ListDialogAction("活动分类3", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             typeDetial.setText("活动分类3");
+
                         }
                     })).create();
         }

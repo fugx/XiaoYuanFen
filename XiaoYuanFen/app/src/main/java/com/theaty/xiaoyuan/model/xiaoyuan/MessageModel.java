@@ -1,6 +1,10 @@
 package com.theaty.xiaoyuan.model.xiaoyuan;
 import com.theaty.xiaoyuan.model.BaseModel;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Generated;
+
 /**
  * 
  * @author Theaty 
@@ -52,8 +56,6 @@ public String from_member_nick;
 /** 是否已读' , */
 public  int  reads;
 
-
-
 //初始化默认值 
  public MessageModel() {
 message_id  = 0;//短消息索引id' ,
@@ -79,6 +81,5 @@ from_member_avatar  = "";//订单类型' ,
 from_member_nick  = "";//订单类型' ,
 reads  = 0;//订单类型' ,
 }
-
 
 }

@@ -2,10 +2,13 @@ package com.theaty.xiaoyuan.model.xiaoyuan;
 
 import com.theaty.xiaoyuan.model.BaseModel;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Generated;
+
 /**
  * Created by Yecal on 2018/12/12.
  */
-
 public class GoodsClassModel extends BaseModel {
     /** 索引id' , */
     public  int  gc_id;
@@ -53,6 +56,4 @@ public class GoodsClassModel extends BaseModel {
         type  = 0;//类型（1动画2视频3教师）' ,
         type_level  = 0;//难度系数' ,
     }
-
-
 }
