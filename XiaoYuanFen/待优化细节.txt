@@ -1,0 +1,7 @@
+1、活动详情：添加（活动时间Str类型、活动热度、联系人二维码、临时群码
+注意事项、标签List）
+
+2、占位图（二维码、活动图、）、图标（按键、）、页面切图
+
+3、
+new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Long.parseLong(play.getTime().toString()) * 1000)
