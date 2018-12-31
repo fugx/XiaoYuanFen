@@ -8,6 +8,7 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.ToMany;
 import org.greenrobot.greendao.annotation.ToOne;
 
+import java.io.Serializable;
 import java.util.List;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.DaoException;
@@ -25,7 +26,7 @@ import com.theaty.xiaoyuan.dao.PlayDao;
  * 注意事项、临时群、<标签>、<联系人>、<照片>、<评论>、<参加的用户>、发起用户、活动类别
  */
 @Entity
-public class Play {
+public class Play implements Serializable {
     /**
      * ID ,
      */

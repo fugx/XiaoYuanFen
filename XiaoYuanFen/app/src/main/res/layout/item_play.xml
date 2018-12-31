@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="3dp">
+
+        <ImageView
+            android:id="@+id/ig_img"
+            android:layout_width="130dp"
+            android:layout_height="90dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/bg3" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_toRightOf="@+id/ig_img">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="活动名称"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/font_16" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="活动简介"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/font_14" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:maxWidth="80dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_999999"
+                    android:text="时间"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_area"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_time"
+                    android:layout_marginLeft="20dp"
+                    android:text="地点"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_area"
+                    android:layout_marginLeft="20dp"
+                    android:text="费用"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:id="@+id/rv_course_sign"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentBottom="true">-->
+            <!--</android.support.v7.widget.RecyclerView>-->
+
+        </RelativeLayout>
+
+</RelativeLayout>
