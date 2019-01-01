@@ -1,7 +1,20 @@
-1¡¢»î¶¯ÏêÇé£ºÌí¼Ó£¨»î¶¯Ê±¼äStrÀàÐÍ¡¢»î¶¯ÈÈ¶È¡¢ÁªÏµÈË¶þÎ¬Âë¡¢ÁÙÊ±ÈºÂë
-×¢ÒâÊÂÏî¡¢±êÇ©List£©
+1ï¿½ï¿½ï¿½î¶¯ï¿½ï¿½ï¿½é£ºï¿½ï¿½Ó£ï¿½ï¿½î¶¯Ê±ï¿½ï¿½Strï¿½ï¿½ï¿½Í¡ï¿½ï¿½î¶¯ï¿½È¶È¡ï¿½ï¿½ï¿½Ïµï¿½Ë¶ï¿½Î¬ï¿½ë¡¢ï¿½ï¿½Ê±Èºï¿½ï¿½
+×¢ï¿½ï¿½ï¿½ï¿½ï¿½î¡¢ï¿½ï¿½Ç©Listï¿½ï¿½
 
-2¡¢Õ¼Î»Í¼£¨¶þÎ¬Âë¡¢»î¶¯Í¼¡¢£©¡¢Í¼±ê£¨°´¼ü¡¢£©¡¢Ò³ÃæÇÐÍ¼
+2ï¿½ï¿½Õ¼Î»Í¼ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ë¡¢ï¿½î¶¯Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ê£¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½Í¼
 
-3¡¢
+3ï¿½ï¿½
 new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Long.parseLong(play.getTime().toString()) * 1000)
+
+4
+//    public <T> List<T> queryPage(Class<T> entityClass, int offset, int limit, String where,
+//                                 Property properties, Object... selectionArgs) {
+//        AbstractDao<T, ?> dao = (AbstractDao<T, ?>) daoSession.getDao(entityClass);
+//        QueryBuilder<T> builder = dao.queryBuilder()
+//                .orderDesc(properties)
+//                .where(
+//                        new WhereCondition.StringCondition(where, selectionArgs))
+//                .offset(offset * limit)
+//                .limit(limit);
+//        return builder.list();
+//    }

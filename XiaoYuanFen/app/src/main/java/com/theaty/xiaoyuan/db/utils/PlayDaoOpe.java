@@ -91,6 +91,20 @@ public class PlayDaoOpe {
     }
 
     /**
+     * 查询分页数据
+     *
+     * @param context
+     * @return
+     */
+    public static List<Play> queryPage(Context context, int offset, int limit) {
+        QueryBuilder<Play> builder = DbManager.getDaoSession(context).getPlayDao().queryBuilder()
+                .offset(offset * limit)
+                .limit(limit);
+
+        return builder.build().list();
+    }
+
+    /**
      * 查询所有数据
      *
      * @param context

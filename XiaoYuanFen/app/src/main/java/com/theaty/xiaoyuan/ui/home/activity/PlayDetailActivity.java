@@ -11,14 +11,17 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.donkingliang.labels.LabelsView;
 import com.theaty.xiaoyuan.R;
 import com.theaty.xiaoyuan.UmengShareUtils;
+import com.theaty.xiaoyuan.dao.PlayDao;
+import com.theaty.xiaoyuan.db.utils.PlayDaoOpe;
+import com.theaty.xiaoyuan.model.xiaoyuan.Member;
 import com.theaty.xiaoyuan.model.xiaoyuan.Play;
 import com.theaty.xiaoyuan.model.xiaoyuan.Sign;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -32,7 +35,7 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
  * Created by Yecal on 2018/12/24.
  */
 
-public class PlayDetialActivity extends BaseActivity {
+public class PlayDetailActivity extends BaseActivity {
 
     @BindView(R.id.ig_img)
     ImageView img;
@@ -59,7 +62,7 @@ public class PlayDetialActivity extends BaseActivity {
     public Play play;
 
     public static void into(Context context) {
-        Intent intent = new Intent(context, PlayDetialActivity.class);
+        Intent intent = new Intent(context, PlayDetailActivity.class);
         context.startActivity(intent);
     }
 
@@ -71,7 +74,12 @@ public class PlayDetialActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        play = (Play)getIntent().getSerializableExtra("play");
+        Long playId = (Long)getIntent().getLongExtra("play",1L);
+        List<Play> plays = PlayDaoOpe.queryForId(this,playId);
+        if(playId!=null && plays.size()>0){
+            play = plays.get(0);
+        }
+
 //        getData(String.valueOf(goodsModel.goods_id));
 //        initView();
         initData();
@@ -88,7 +96,8 @@ public class PlayDetialActivity extends BaseActivity {
                 RoundedCornersTransformation.CornerType.ALL));
 //        play_time.setText("");
         play_time.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Long.parseLong(play.getTime().toString()) * 1000));
-        publish.setText(play.getMember().getName());
+        Member member = play.getMember();
+        publish.setText(member.getName());//getmember  待修改
         fee.setText(play.getFee().toString() + "元");
         hot.setText(play.getNum());
         play_detail.setText(play.getIntroduction());

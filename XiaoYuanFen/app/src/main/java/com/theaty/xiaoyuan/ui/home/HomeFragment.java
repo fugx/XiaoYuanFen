@@ -28,6 +28,8 @@ import com.theaty.xiaoyuan.model.xiaoyuan.MemberModel;
 import com.theaty.xiaoyuan.model.xiaoyuan.Play;
 import com.theaty.xiaoyuan.system.DatasStore;
 import com.theaty.xiaoyuan.ui.MainActivity;
+import com.theaty.xiaoyuan.ui.home.activity.PlayDetailActivity;
+import com.theaty.xiaoyuan.ui.home.activity.PlayListActivity;
 import com.theaty.xiaoyuan.ui.home.adapter.CityPlayAdapter;
 import com.theaty.xiaoyuan.ui.home.adapter.MeetingAdapter;
 import com.theaty.xiaoyuan.ui.home.adapter.OutdoorAdapter;
@@ -136,10 +138,10 @@ public class HomeFragment extends BaseFragment {
         outdoorAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Play good = outdoorAdapter.getData().get(position);
-//                Intent intent = new Intent(getContext(), VideoDetailActivity.class);
-//                intent.putExtra("good", good);
-//                startActivity(intent);
+                Play play1 = outdoorAdapter.getData().get(position);
+                Intent intent = new Intent(getContext(), PlayDetailActivity.class);
+                intent.putExtra("play", play1.getPlayId());
+                startActivity(intent);
             }
         });
         outdoorAdapter.setEmptyView(initEmptyView("无户外活动"));
@@ -155,11 +157,10 @@ public class HomeFragment extends BaseFragment {
         cityPlayAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Play play = cityPlayAdapter.getData().get(position);
-//                activity.course = good;
-//                Intent intent = new Intent(getContext(), AnimationDetailActivity.class);
-//                intent.putExtra("good", good);
-//                startActivity(intent);
+                Play play2 = cityPlayAdapter.getData().get(position);
+                Intent intent = new Intent(getContext(), PlayDetailActivity.class);
+                intent.putExtra("play", play2.getPlayId());
+                startActivity(intent);
             }
         });
         cityPlayAdapter.setEmptyView(initEmptyView("无市区活动"));
@@ -175,10 +176,10 @@ public class HomeFragment extends BaseFragment {
         meetingAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Play member = meetingAdapter.getData().get(position);
-//                Intent intent = new Intent(getContext(), TeacherDetailActivity.class);
-//                intent.putExtra("member", member);
-//                startActivity(intent);
+                Play play3 = meetingAdapter.getData().get(position);
+                Intent intent = new Intent(getContext(), PlayDetailActivity.class);
+                intent.putExtra("play", play3.getPlayId());
+                startActivity(intent);
             }
         });
         meetingAdapter.setEmptyView(initEmptyView("无约会"));
@@ -270,72 +271,40 @@ public class HomeFragment extends BaseFragment {
 
     }
 
-//    CourseFragment fragment ;
-//
-//    @OnClick({R.id.ig_sign_up,R.id.ig_message,R.id.tv_video_more,R.id.tv_animation_more,R.id.tv_teacher_more})
-//    public void onViewClicked(View view) {
-//        switch (view.getId()) {
-//            case R.id.ig_sign_up:
+    @OnClick({R.id.tv_outdoor_more,R.id.tv_city_more,R.id.tv_tryst_more})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_outdoor_more:
 //                if (DatasStore.isLogin()) {
-//                    SignUpActivity.into(getContext());
+                    Intent intent1 = new Intent(getContext(), PlayListActivity.class);
+                    intent1.putExtra("type",1L);
+                    getContext().startActivity(intent1);
 //                } else {
 //                    LoginActivity.into(getContext());
 //                }
-//                break;
-//
-//            case R.id.ig_message:
+                break;
+
+            case R.id.tv_city_more:
 //                if (DatasStore.isLogin()) {
-//                    MessageActivity.into(getContext());
+                    Intent intent2 = new Intent(getContext(), PlayListActivity.class);
+                    intent2.putExtra("type",2L);
+                    getContext().startActivity(intent2);
 //                } else {
 //                    LoginActivity.into(getContext());
 //                }
-//                break;
-//
-//            case R.id.tv_video_more:
-//                activity.enableTabItem(1);
-//                activity.selectPage(1);
-//                //activity选中的fragment
-//                fragment = (CourseFragment) activity.targetFragment;
+                break;
+
+            case R.id.tv_tryst_more:
 //                if(fragment.orderRg==null){
-//                    turnTo(1);
+                    Intent intent3 = new Intent(getContext(), PlayListActivity.class);
+                    intent3.putExtra("type",3L);
+                    getContext().startActivity(intent3);
 //                }else{
 //                    ((RadioButton)fragment.orderRg.getChildAt(1)).setChecked(true);
 //                }
-//                break;
-//
-//            case R.id.tv_animation_more:
-//                activity.enableTabItem(1);
-//                activity.selectPage(1);
-//                fragment = (CourseFragment) activity.targetFragment;
-//                if(fragment.orderRg==null){
-//                    turnTo(0);
-//                }else{
-//                    ((RadioButton)fragment.orderRg.getChildAt(0)).setChecked(true);
-//                }
-//                break;
-//
-//            case R.id.tv_teacher_more:
-//                activity.enableTabItem(1);
-//                activity.selectPage(1);
-//                fragment = (CourseFragment) activity.targetFragment;
-//                if(fragment.orderRg==null){
-//                    turnTo(2);
-//                }else{
-//                    ((RadioButton)fragment.orderRg.getChildAt(2)).setChecked(true);
-//                }
-//                break;
-//        }
-//    }
-
-    //跳转至
-//    private void turnTo(final int n){
-//        fragment.setChangeListener(new CourseFragment.ChangeListener() {
-//            @Override
-//            public void changeIndex() {
-//                ((RadioButton)fragment.orderRg.getChildAt(n)).setChecked(true);
-//            }
-//        });
-//    }
+                break;
+        }
+    }
 
     @Override
     public void onDestroy() {

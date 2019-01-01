@@ -143,6 +143,8 @@
         <activity android:name=".ui.login.LoginActivity"/>
         <activity android:name=".ui.lucky.activity.SearchActivity"/>
         <activity android:name=".ui.lucky.activity.CreateGoodsActivity"/>
+        <activity android:name=".ui.home.activity.PlayDetailActivity"/>
+        <activity android:name=".ui.home.activity.PlayListActivity"/>
     </application>
 
 </manifest>
