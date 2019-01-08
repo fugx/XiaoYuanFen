@@ -96,10 +96,10 @@ public class PlayDetailActivity extends BaseActivity {
                 RoundedCornersTransformation.CornerType.ALL));
 //        play_time.setText("");
         play_time.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Long.parseLong(play.getTime().toString()) * 1000));
-        Member member = play.getMember();
-        publish.setText(member.getName());//getmember  待修改
+//        Member member = play.getMember();
+//        publish.setText(member.getName());//getmember  待修改
         fee.setText(play.getFee().toString() + "元");
-        hot.setText(play.getNum());
+        hot.setText(String.valueOf(play.getNum()));
         play_detail.setText(play.getIntroduction());
         //TODO 待添加字段:注意事项
         notice_content.setText(play.getIntroduction());

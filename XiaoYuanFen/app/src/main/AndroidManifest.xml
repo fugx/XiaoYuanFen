@@ -137,6 +137,8 @@
             android:name="PGYER_APPID"
             android:value="5c744956a045570de9b9881787ac231e" />
 
+        <activity android:name="foundation.base.activity.BaseWebViewActivity"/>
+
         <activity android:name=".ui.login.RegisterActivity"/>
         <activity android:name=".ui.login.ForgetPassActivity"/>
         <activity android:name=".ui.login.AgreementActivity"/>

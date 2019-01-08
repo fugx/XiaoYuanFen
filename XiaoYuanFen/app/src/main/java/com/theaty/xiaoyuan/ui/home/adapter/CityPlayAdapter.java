@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.theaty.xiaoyuan.R;
 import com.theaty.xiaoyuan.model.xiaoyuan.Play;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import foundation.glide.GlideUtil;
@@ -39,6 +40,6 @@ public class CityPlayAdapter extends BaseQuickAdapter<Play,BaseViewHolder> {
         GlideUtil.getInstance().loadImage(mContext, imageView, item.getPhoto(), R.mipmap.bg2, R.mipmap.bg2, new CenterCrop(mContext), new RoundedCornersTransformation(mContext, 30, 10,
                 RoundedCornersTransformation.CornerType.ALL));
         helper.setText(R.id.tv_name, item.getName());
-        helper.setText(R.id.tv_time, String.valueOf(item.getTime()));
+        helper.setText(R.id.tv_time, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Long.parseLong(item.getTime().toString()) * 1000));
     }
 }

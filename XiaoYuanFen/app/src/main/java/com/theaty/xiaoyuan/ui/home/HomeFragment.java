@@ -78,6 +78,7 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.banner_guide_content)
     BGABanner mContentBanner;
 
+    private ArrayList<Play> advModels = new ArrayList<>();
     private ArrayList<Play> outdoors = new ArrayList<>();
     private ArrayList<Play> cityPlays  = new ArrayList<>();
     private ArrayList<Play> trysts  = new ArrayList<>();
@@ -186,6 +187,43 @@ public class HomeFragment extends BaseFragment {
     }
 
     public void getData() {
+        //广告推广类型
+        advModels.clear();
+        advModels.addAll(PlayDaoOpe.queryForTypeId(activity,0L));
+        List<String> imageData = new ArrayList<>();
+        List<String> word = new ArrayList<>();
+        for(Play adv:advModels){
+            imageData.add(adv.getPhoto());
+            word.add("");
+        }
+
+        if (advModels.size() == 0) {
+            mContentBanner.setVisibility(View.GONE);
+        }else{
+            mContentBanner.setVisibility(View.VISIBLE);
+        }
+        mContentBanner.setAdapter(new BGABanner.Adapter<ImageView, String>() {
+            @Override
+            public void fillBannerItem(BGABanner banner, ImageView itemView, String model, int position) {
+                Glide.with(getContext())
+                        .load(model)
+                        .placeholder(R.drawable.test1)
+                        .error(R.drawable.test1)
+                        .centerCrop()
+                        .dontAnimate()
+                        .into(itemView);
+            }
+        });
+        mContentBanner.setData(imageData, word);
+
+        mContentBanner.setDelegate(new BGABanner.Delegate<ImageView, String>() {
+            @Override
+            public void onBannerItemClick(BGABanner banner, ImageView itemView, String model, int position) {
+                Play adv = advModels.get(position);
+                BaseWebViewActivity.loadUrl(getContext(), adv.getUrl(), adv.getTitle());
+            }
+        });
+
         outdoors.clear();
         outdoors.addAll(PlayDaoOpe.queryForTypeId(activity,1L));
         cityPlays.clear();
