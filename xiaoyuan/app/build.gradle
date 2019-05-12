@@ -1,0 +1,120 @@
+apply plugin: 'com.android.application'
+
+def config = rootProject.ext.configuration
+def libs = rootProject.ext.library
+android {
+    compileSdkVersion config.compileSdk
+    buildToolsVersion config.buildToolsVersion
+
+    defaultConfig {
+        applicationId config.applicationId
+        minSdkVersion config.minSdk
+        targetSdkVersion config.targetSdk
+        versionCode config.versionCode
+        versionName config.versionName
+        //添加多 dex分包支持
+        multiDexEnabled true
+
+        manifestPlaceholders = [
+                //个推参数 必须要，否则编译不过  (重新申请key)
+                GETUI_APP_ID    : "cbFO0geLAS7TmVGT8RUxJA",
+                GETUI_APP_KEY   : "qapIvKqGDH7qlCHe0dAHv",
+                GETUI_APP_SECRET: "aVRD88SHIj6GKesw4tPiJ3",
+                PACKAGE_NAME    : applicationId
+        ]
+    }
+
+    //指定哪些源文件（或文件夹下的源文件）要被编译，哪些源文件要被排除
+    sourceSets {
+        main.jniLibs.srcDirs = ['libs']
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("release.keystore")
+            storePassword 'theaty'
+            keyAlias 'release'
+            keyPassword 'theaty'
+        }
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    buildTypes {
+        release {
+            ndk {
+                abiFilters "armeabi", "armeabi-v7a"
+            }
+
+            // minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            ndk {
+                abiFilters "armeabi", "armeabi-v7a", "x86"
+            }
+            signingConfig signingConfigs.release
+        }
+    }
+
+    //自动创建编译后的名称，格式：包名后半部分_versionName_versionCode_time_buildtype_apk (quDancing_V1.0.0_1_20180527_release.apk)
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.each { output ->
+                def time = new Date().format("yyyyMMdd", TimeZone.getTimeZone("GMT+08:00"))//获取当前打包时间
+                def appName = defaultConfig.applicationId.substring(defaultConfig.applicationId.lastIndexOf(".") + 1)//截取包名最后部分作为名称
+                def name = "${appName}_V${defaultConfig.versionName}_${defaultConfig.versionCode}_${time}_${buildType.name}.apk"
+                output.outputFileName = name
+            }
+    }
+
+    //统一所有的support包下的版本号，尤其是第三方的依赖包
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion libs.supportLibrary
+                }
+            }
+        }
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation project(':commonlibrary')
+    implementation project(':umengshare')
+    implementation project(':versionmanagerlibrary')
+    implementation files('libs/xUtils-2.6.14.jar')
+    //工具类初始化
+    compile 'com.blankj:utilcode:1.3.6'
+    //个推
+    compile 'com.getui:sdk:2.12.3.0'
+    compile "com.jakewharton:butterknife:${libs.butterknife}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${libs.butterknife}"
+}

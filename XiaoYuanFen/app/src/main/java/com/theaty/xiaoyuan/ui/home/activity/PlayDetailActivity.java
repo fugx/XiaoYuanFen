@@ -95,7 +95,7 @@ public class PlayDetailActivity extends BaseActivity {
         GlideUtil.getInstance().loadImage(mContext, group_img, play.getUrl(), R.mipmap.logo, R.mipmap.logo, new CenterCrop(mContext), new RoundedCornersTransformation(mContext, 2, 0,
                 RoundedCornersTransformation.CornerType.ALL));
 //        play_time.setText("");
-        play_time.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Long.parseLong(play.getTime().toString()) * 1000));
+        play_time.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Long.parseLong(play.getTime().toString())));
 //        Member member = play.getMember();
 //        publish.setText(member.getName());//getmember  待修改
         fee.setText(play.getFee().toString() + "元");

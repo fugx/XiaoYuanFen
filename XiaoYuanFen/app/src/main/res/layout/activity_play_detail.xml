@@ -124,7 +124,7 @@
                 android:id="@+id/tv_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ig_img"
+                android:layout_below="@+id/lv_sign_list"
                 android:layout_marginTop="8dp"
                 android:text="活动简介"
                 android:textSize="@dimen/font_16"/>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/title_debug"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="40dp"
+        android:textColor="@color/black"
+        android:background="@color/primary_color"
+        android:text="debug数据"/>
+    <WebView
+        android:id="@+id/webView_debug"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"></WebView>
+    <TextView
+        android:id="@+id/dismiss"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:background="@color/primary_color"
+        android:text="取消"/>
+
+</LinearLayout>

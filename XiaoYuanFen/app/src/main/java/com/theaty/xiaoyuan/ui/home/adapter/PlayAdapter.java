@@ -54,7 +54,7 @@ public class PlayAdapter extends BaseQuickAdapter<Play, BaseViewHolder> {
         }
         helper.setText(R.id.tv_name, item.getName());
         helper.setText(R.id.tv_content, item.getIntroduction());
-        helper.setText(R.id.tv_time, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Long.parseLong(item.getTime().toString()) * 1000));
+        helper.setText(R.id.tv_time, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Long.parseLong(item.getTime().toString())));
         helper.setText(R.id.tv_area, item.getArea());
         helper.setText(R.id.tv_fee, item.getFee().toString());
     }

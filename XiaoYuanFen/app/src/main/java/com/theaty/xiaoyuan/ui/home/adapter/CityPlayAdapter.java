@@ -37,9 +37,9 @@ public class CityPlayAdapter extends BaseQuickAdapter<Play,BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, final Play item) {
         ImageView imageView = (ImageView) helper.getView(R.id.ig_img);
-        GlideUtil.getInstance().loadImage(mContext, imageView, item.getPhoto(), R.mipmap.bg2, R.mipmap.bg2, new CenterCrop(mContext), new RoundedCornersTransformation(mContext, 30, 10,
+        GlideUtil.getInstance().loadImage(mContext, imageView, item.getPhoto(), R.mipmap.bg2, R.mipmap.bg2, new CenterCrop(mContext), new RoundedCornersTransformation(mContext, 10, 10,
                 RoundedCornersTransformation.CornerType.ALL));
         helper.setText(R.id.tv_name, item.getName());
-        helper.setText(R.id.tv_time, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Long.parseLong(item.getTime().toString()) * 1000));
+        helper.setText(R.id.tv_time, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Long.parseLong(item.getTime().toString())));
     }
 }
