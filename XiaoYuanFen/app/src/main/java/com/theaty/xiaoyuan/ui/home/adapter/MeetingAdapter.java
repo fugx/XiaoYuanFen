@@ -58,7 +58,7 @@ public class MeetingAdapter extends BaseQuickAdapter<Play, BaseViewHolder> {
         if (item.getPhoto() == "") {
             imageView.setVisibility(View.GONE);
         } else {
-            GlideUtil.getInstance().loadImage(mContext, imageView, item.getPhoto(), R.mipmap.bg1, R.mipmap.bg1, new CenterCrop(mContext), new RoundedCornersTransformation(mContext, 20, 0,
+            GlideUtil.getInstance().loadImage(mContext, imageView, item.getPhoto(), R.mipmap.bg1, R.mipmap.bg1, new CenterCrop(mContext), new RoundedCornersTransformation(mContext, 10, 0,
                     RoundedCornersTransformation.CornerType.ALL));
         }
         helper.setText(R.id.tv_name, item.getName());

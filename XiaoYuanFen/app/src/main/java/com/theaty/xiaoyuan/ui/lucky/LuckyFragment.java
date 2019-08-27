@@ -79,30 +79,30 @@ public class LuckyFragment extends BaseFragment {
         super.onDestroyView();
     }
 
-    @OnClick({R.id.iv_creat_icon,R.id.tv_creat,R.id.ig_search_word})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.iv_creat_icon:
-                CreateGoodsActivity.into(getContext());
-//                if (DatasStore.isLogin()) {
-//                } else {
-//                    LoginActivity.into(getContext());
-//                }
-                break;
-
-            case R.id.tv_creat:
-                CreateGoodsActivity.into(getContext());
-//                if (DatasStore.isLogin()) {
-//                } else {
-//                    LoginActivity.into(getContext());
-//                }
-                break;
-
-            case R.id.ig_search_word:
-                SearchActivity.into(getContext());
-                break;
-        }
-    }
+//    @OnClick({R.id.iv_creat_icon,R.id.tv_creat,R.id.ig_search_word})
+//    public void onViewClicked(View view) {
+//        switch (view.getId()) {
+//            case R.id.iv_creat_icon:
+//                CreateGoodsActivity.into(getContext());
+////                if (DatasStore.isLogin()) {
+////                } else {
+////                    LoginActivity.into(getContext());
+////                }
+//                break;
+//
+//            case R.id.tv_creat:
+//                CreateGoodsActivity.into(getContext());
+////                if (DatasStore.isLogin()) {
+////                } else {
+////                    LoginActivity.into(getContext());
+////                }
+//                break;
+//
+//            case R.id.ig_search_word:
+//                SearchActivity.into(getContext());
+//                break;
+//        }
+//    }
 
     private ChangeListener changeListener;
 
